@@ -1,29 +1,19 @@
 package com.ufund.api.ufundapi.controller;
 
-import java.io.IOException;
+import java.util.logging.Logger;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.ufund.api.ufundapi.persistence.NeedDAO;
+
+@RestController
+@RequestMapping("needs")
 public class NeedController {
-    // @DeleteMapping("/{id}")
-    // public ResponseEntity<Hero> deleteHero(@PathVariable int id) {
-    //     LOG.info("DELETE /heroes/" + id);
+    private static final Logger LOG = Logger.getLogger(NeedController.class.getName());
+    private NeedDAO needDAO;
 
-    //     try{
-    //         Hero[] heroes = heroDao.getHeroes();
-    //         for(Hero hero : heroes){
-    //             if(hero.getId() == id){
-    //                 return new ResponseEntity<>(hero, HttpStatus.OK);
-    //             }
-    //         }
-            
-    //     }
-    //     catch(IOException e ){
-
-    //     }
-    //     return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-    // }
+    public NeedController(NeedDAO needDAO) {
+        this.needDAO = needDAO;
+    }
 }
