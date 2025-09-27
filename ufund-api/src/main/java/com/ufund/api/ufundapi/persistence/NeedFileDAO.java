@@ -22,7 +22,7 @@ public class NeedFileDAO implements NeedDAO {
     private static int nextId;
     private String filename;
 
-    public NeedFileDAO(@Value("${need.file}") String filename, ObjectMapper objectMapper) throws IOException {
+    public NeedFileDAO(@Value("${needs.file}") String filename, ObjectMapper objectMapper) throws IOException {
         this.filename = filename;
         this.objectMapper = objectMapper;
         load();
@@ -71,5 +71,15 @@ public class NeedFileDAO implements NeedDAO {
 
         ++nextId;
         return true;
+    }
+
+    @Override
+    public Need createNeed(Need need) throws IOException {
+        synchronized(needs) {
+            Need newNeed = new Need(nextId(), need.getName(), need.getCost(), need.getQuantity());
+            needs.put(newNeed.getId(), newNeed);
+            save();
+            return newNeed;
+        }
     }
 }
