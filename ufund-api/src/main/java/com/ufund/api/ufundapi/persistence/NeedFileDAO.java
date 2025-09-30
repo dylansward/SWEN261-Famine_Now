@@ -41,7 +41,7 @@ public class NeedFileDAO implements NeedDAO {
     private Need[] getNeedsArray(String containsText) {
         ArrayList<Need> needArrayList = new ArrayList<>();
         for (Need need : needs.values()) {
-            if (containsText == null || need.getName().contains(containsText)) {
+            if (containsText == null || need.getName().toLowerCase().contains(containsText)) {
                 needArrayList.add(need);
             }
         }
@@ -80,6 +80,20 @@ public class NeedFileDAO implements NeedDAO {
             needs.put(newNeed.getId(), newNeed);
             save();
             return newNeed;
+        }
+    }
+
+    @Override
+    public Need[] getNeeds() {
+        synchronized(needs) {
+            return getNeedsArray();
+        }
+    }
+
+    @Override
+    public Need[] searchNeeds(String containsText) throws IOException {
+        synchronized(needs) {
+            return getNeedsArray(containsText.toLowerCase());
         }
     }
 }
