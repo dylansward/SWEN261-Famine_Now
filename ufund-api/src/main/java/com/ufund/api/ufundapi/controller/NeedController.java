@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import java.util.logging.Level;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,7 +40,21 @@ public class NeedController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    
+    @GetMapping("")
+    public ResponseEntity<Need[]> getNeeds() {
+        LOG.info("GET /needs");
 
+        try {
+            Need[] needs = needDAO.getNeeds();
+            return new ResponseEntity<Need[]>(needs,HttpStatus.OK);
+        }
+        catch(IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
     @GetMapping("/{id}")
     public ResponseEntity<Need> getNeed(@PathVariable int id) {
         LOG.info("GET /needs/" + id);
@@ -49,13 +64,27 @@ public class NeedController {
                 return new ResponseEntity<Need>(need,HttpStatus.OK);
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    
         }
         catch(IOException e) {
             LOG.log(Level.SEVERE,e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @GetMapping("/")
+    public ResponseEntity<Need[]> searchNeeds(@RequestParam String name) {
+        LOG.info("GET /needs/?name="+name);
 
+        try {
+            Need[] needs = needDAO.searchNeeds(name);
+            return new ResponseEntity<Need[]>(needs,HttpStatus.OK);
+        }
+        catch(IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
     @PutMapping("")
     public ResponseEntity<Need> updateNeed(@RequestBody Need need) {
         LOG.info("PUT /needs " + need);
@@ -68,21 +97,6 @@ public class NeedController {
                 return new ResponseEntity<Need>(need, HttpStatus.NOT_FOUND);
             }
         } 
-        catch (IOException e) {
-            LOG.log(Level.SEVERE,e.getLocalizedMessage());
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @GetMapping("")
-    public ResponseEntity<Need[]> getNeeds() {
-        LOG.info("GET /needs");
-
-        // Replace below with your implementation
-        try {
-            Need[] needs = needDAO.getNeeds();
-            return new ResponseEntity<Need[]>(needs, HttpStatus.OK);
-        }
         catch (IOException e) {
             LOG.log(Level.SEVERE,e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

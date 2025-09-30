@@ -9,4 +9,5 @@ public interface NeedDAO {
     Need getNeed(int id) throws IOException;
     Need updateNeed(Need need) throws IOException;
     Need[] getNeeds() throws IOException;
+    Need[] searchNeeds(String containsText) throws IOException;
 }
