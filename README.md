@@ -7,7 +7,7 @@ An online U-Fund system built in Java **24** and ___ _replace with other platfor
 
 - Anthony Salsbury
 - Dylan Sward
-- MEMBER3
+- Vladislav Kudin
 - MEMBER4
 
 

@@ -84,6 +84,19 @@ public class NeedFileDAO implements NeedDAO {
     }
 
     @Override
+    public boolean deleteNeed(int id) throws IOException {
+        synchronized(needs) {
+            if (needs.containsKey(id)) {
+                needs.remove(id);
+                return save();
+            }
+            else {
+                return false;
+            }
+        }
+    }
+    
+    @Override
     public Need getNeed(int id) throws IOException {
         synchronized(needs) {
             if(needs.containsKey(id)) {
@@ -106,12 +119,14 @@ public class NeedFileDAO implements NeedDAO {
             return need;
         }
     }
+    
+    @Override
     public Need[] getNeeds() {
         synchronized(needs) {
             return getNeedsArray();
         }
     }
-
+    
     @Override
     public Need[] searchNeeds(String containsText) throws IOException {
         synchronized(needs) {

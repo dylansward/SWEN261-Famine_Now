@@ -6,6 +6,7 @@ import com.ufund.api.ufundapi.model.Need;
 
 public interface NeedDAO {
     Need createNeed(Need need) throws IOException;
+    boolean deleteNeed(int id) throws IOException;
     Need getNeed(int id) throws IOException;
     Need updateNeed(Need need) throws IOException;
     Need[] getNeeds() throws IOException;
