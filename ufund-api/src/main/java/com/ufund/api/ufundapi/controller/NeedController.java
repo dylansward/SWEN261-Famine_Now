@@ -3,16 +3,14 @@ package com.ufund.api.ufundapi.controller;
 import java.io.IOException;
 import java.util.logging.Logger;
 import java.util.logging.Level;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
@@ -20,11 +18,8 @@ import org.springframework.http.HttpStatus;
 import com.ufund.api.ufundapi.persistence.NeedDAO;
 import com.ufund.api.ufundapi.model.Need;
 
-
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.ufund.api.ufundapi.model.Need;
 
 @RestController
 @RequestMapping("needs")
@@ -54,11 +49,11 @@ public class NeedController {
         LOG.info("DELETE /heroes/" + id);
 
         try{
-            Need[] needs = needDAO.getNeeds();
-            for(Need need : needs){
-                if(need.getId() == id){
-                    return new ResponseEntity<>(need, HttpStatus.OK);
-                }
+            Need removedNeed = needDAO.deleteNeed(id);
+            if (removedNeed != null){
+                return new ResponseEntity<Need>(removedNeed, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
             
         }
