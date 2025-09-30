@@ -15,14 +15,14 @@ import org.springframework.stereotype.Component;
 import com.ufund.api.ufundapi.model.Need;
 
 @Component
-public class NeedFileDAO implements NeedDAO {
-    private static final Logger LOG = Logger.getLogger(NeedFileDAO.class.getName());
+public class CupboardFileDAO implements NeedDAO {
+    private static final Logger LOG = Logger.getLogger(CupboardFileDAO.class.getName());
     Map<Integer, Need> needs;
     private ObjectMapper objectMapper;
     private static int nextId;
     private String filename;
 
-    public NeedFileDAO(@Value("${needs.file}") String filename, ObjectMapper objectMapper) throws IOException {
+    public CupboardFileDAO(@Value("${cupboard.file}") String filename, ObjectMapper objectMapper) throws IOException {
         this.filename = filename;
         this.objectMapper = objectMapper;
         load();

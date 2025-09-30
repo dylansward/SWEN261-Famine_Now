@@ -22,18 +22,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 
 @RestController
-@RequestMapping("needs")
-public class NeedController {
-    private static final Logger LOG = Logger.getLogger(NeedController.class.getName());
+@RequestMapping("cupboard")
+public class CupboardController {
+    private static final Logger LOG = Logger.getLogger(CupboardController.class.getName());
     private NeedDAO needDAO;
 
-    public NeedController(NeedDAO needDAO) {
+    public CupboardController(NeedDAO needDAO) {
         this.needDAO = needDAO;
     }
 
     @PostMapping("")
     public ResponseEntity<Need> createNeed(@RequestBody Need need) {
-        LOG.info("POST /needs " + need);
+        LOG.info("POST /cupboard " + need);
 
         try {
             Need newNeed = needDAO.createNeed(need);
@@ -46,7 +46,7 @@ public class NeedController {
     
     @DeleteMapping("/{id}")
     public ResponseEntity<Need> deleteNeed(@PathVariable int id) {
-        LOG.info("DELETE /heroes/" + id);
+        LOG.info("DELETE /cupboard/" + id);
 
         try{
             Need removedNeed = needDAO.deleteNeed(id);
@@ -65,7 +65,7 @@ public class NeedController {
     
     @GetMapping("")
     public ResponseEntity<Need[]> getNeeds() {
-        LOG.info("GET /needs");
+        LOG.info("GET /cupboard");
 
         try {
             Need[] needs = needDAO.getNeeds();
@@ -79,7 +79,7 @@ public class NeedController {
     
     @GetMapping("/{id}")
     public ResponseEntity<Need> getNeed(@PathVariable int id) {
-        LOG.info("GET /needs/" + id);
+        LOG.info("GET /cupboard/" + id);
         try {
             Need need = needDAO.getNeed(id);
             if (need != null)
@@ -95,7 +95,7 @@ public class NeedController {
     }
     @GetMapping("/")
     public ResponseEntity<Need[]> searchNeeds(@RequestParam String name) {
-        LOG.info("GET /needs/?name="+name);
+        LOG.info("GET /cupboard/?name="+name);
 
         try {
             Need[] needs = needDAO.searchNeeds(name);
@@ -109,7 +109,7 @@ public class NeedController {
     
     @PutMapping("")
     public ResponseEntity<Need> updateNeed(@RequestBody Need need) {
-        LOG.info("PUT /needs " + need);
+        LOG.info("PUT /cupboard " + need);
         try {
             need = needDAO.updateNeed(need);
             if (need != null) {
