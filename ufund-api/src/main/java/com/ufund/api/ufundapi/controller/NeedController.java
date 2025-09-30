@@ -5,7 +5,9 @@ import java.util.logging.Logger;
 import java.util.logging.Level;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +35,34 @@ public class NeedController {
             return new ResponseEntity<Need>(newNeed, HttpStatus.CREATED);
         } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("")
+    public ResponseEntity<Need[]> getNeeds() {
+        LOG.info("GET /needs");
+
+        try {
+            Need[] needs = needDAO.getNeeds();
+            return new ResponseEntity<Need[]>(needs,HttpStatus.OK);
+        }
+        catch(IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/")
+    public ResponseEntity<Need[]> searchNeeds(@RequestParam String name) {
+        LOG.info("GET /needs/?name="+name);
+
+        try {
+            Need[] needs = needDAO.searchNeeds(name);
+            return new ResponseEntity<Need[]>(needs,HttpStatus.OK);
+        }
+        catch(IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
