@@ -82,4 +82,36 @@ public class NeedFileDAO implements NeedDAO {
             return newNeed;
         }
     }
+
+    @Override
+    public Need getNeed(int id) throws IOException {
+        synchronized(needs) {
+            if(needs.containsKey(id)) {
+                return needs.get(id);
+            }
+            else {
+                return null;
+            }
+        }
+    }
+
+    @Override
+    public Need updateNeed(Need need) throws IOException {
+        synchronized(needs) {
+            if (needs.containsKey(need.getId()) == false)
+                return null;
+
+            needs.put(need.getId(),need);
+            save();
+            return need;
+        }
+    }
+
+    @Override
+    public Need[] getNeeds() throws IOException {
+        synchronized(needs) {
+            return getNeedsArray();
+        }
+    }
 }
+
