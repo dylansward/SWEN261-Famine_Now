@@ -104,7 +104,8 @@ public class NeedFileDAO implements NeedDAO {
             needs.put(need.getId(),need);
             save();
             return need;
-
+        }
+    }
     public Need[] getNeeds() {
         synchronized(needs) {
             return getNeedsArray();
