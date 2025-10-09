@@ -14,7 +14,7 @@ export class BackendConnection {
 
   constructor(private http: HttpClient){}
   /** GET needs from the server */
-  getHeroes(): Observable<Need[]> {
+  getNeeds(): Observable<Need[]> {
     return this.http.get<Need[]>(this.url)
   }
 }

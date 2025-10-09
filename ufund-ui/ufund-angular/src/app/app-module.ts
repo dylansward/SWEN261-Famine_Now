@@ -5,16 +5,19 @@ import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { Needs } from './needs/needs';
 import { LoginPage } from './login-page/login-page';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
     App,
     Needs,
-    LoginPage
+    LoginPage,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [
     provideBrowserGlobalErrorListeners()

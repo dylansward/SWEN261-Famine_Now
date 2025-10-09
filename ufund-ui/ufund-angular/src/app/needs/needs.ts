@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Need} from './need';
+import { Need } from './need';
 import { BackendConnection } from '../backend-connection';
 
 @Component({
@@ -18,6 +18,6 @@ export class Needs implements OnInit {
   }
 
   getNeeds(): void {
-    this.backend.getHeroes();
+    this.backend.getNeeds();
   }
 }
