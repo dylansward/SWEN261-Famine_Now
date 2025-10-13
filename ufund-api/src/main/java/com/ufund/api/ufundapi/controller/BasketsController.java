@@ -88,7 +88,7 @@ public class BasketsController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<Basket[]> getBaskets(@RequestParam String user) {
+    public ResponseEntity<Basket[]> searchBaskets(@RequestParam String user) {
         LOG.info("GET /baskets?user=" + user);
 
         try {
@@ -96,6 +96,24 @@ public class BasketsController {
             return new ResponseEntity<Basket[]>(baskets,HttpStatus.OK);
         }
         catch(IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("")
+    public ResponseEntity<Basket> updateBasket(@RequestBody Basket basket) {
+        LOG.info("PUT /baskets " + basket);
+        try {
+            basket = basketsDAO.updateBasket(basket);
+            if (basket != null) {
+                return new ResponseEntity<Basket>(basket, HttpStatus.OK);
+            }
+            else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } 
+        catch (IOException e) {
             LOG.log(Level.SEVERE,e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
