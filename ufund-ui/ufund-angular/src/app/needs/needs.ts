@@ -20,4 +20,10 @@ export class Needs implements OnInit {
   getNeeds(): void {
     this.backend.getNeeds().subscribe(needs => this.needs = needs);
   }
+
+  startEdit(n: Need): void {
+    console.log("start editing");
+    console.log(n.name);
+    n.current = true;
+  }
 }

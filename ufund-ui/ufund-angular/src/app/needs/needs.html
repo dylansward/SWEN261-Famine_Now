@@ -4,9 +4,19 @@
 <!--this still needs to be updated to have a need-detail or something similar for functionality but this is a quick solution-->
 <ul class="needs">
   <li *ngFor="let need of needs">
-      <p> {{need.id}} </p>
-      <p> {{need.name}} </p>
-      <p> {{need.cost}} </p>
-      <p> {{need.quantity}} </p>
+      <div *ngIf="!need.current">
+        <p> {{need.id}} </p>
+        <p> {{need.name}} </p>
+        <p> {{need.cost}} </p>
+        <p> {{need.quantity}} </p>
+        <button (click)="startEdit(need)">Edit</button>
+      </div>
+      <div *ngIf="need.current">
+        <p> {{need.id}} </p>
+        <p> {{need.name}} </p>
+        <p> {{need.cost}} </p>
+        <p> {{need.quantity}} </p>
+        <button (click)="startEdit(need)">Edit</button>
+      </div>
   </li>
 </ul>
