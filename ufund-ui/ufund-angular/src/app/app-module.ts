@@ -7,6 +7,7 @@ import { App } from './app';
 import { Needs } from './needs/needs';
 import { LoginPage } from './login-page/login-page';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     NgFor,
   ],
   providers: [
@@ -26,4 +28,6 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   bootstrap: [App]
 })
-export class AppModule { }
+export class AppModule { 
+  static user_status: number = 0;
+}
