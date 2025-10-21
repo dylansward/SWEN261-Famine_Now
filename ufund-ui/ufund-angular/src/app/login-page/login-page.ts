@@ -17,9 +17,14 @@ export class LoginPage {
     console.log("Hello,Wordl!");
     if (this.username == "admin"){
       AppModule.user_status = 2;
-    } else {
+    } 
+    else if (this.username == "" || this.username == null){
+      AppModule.user_status = 0;
+    }
+    else if (this.username != null) {
       AppModule.user_status = 1;
     }
+    
     console.log(AppModule.user_status);
     }
   }
