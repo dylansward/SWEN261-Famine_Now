@@ -7,6 +7,7 @@ import { App } from './app';
 import { Needs } from './needs/needs';
 import { LoginPage } from './login-page/login-page';
 import { HttpClientModule } from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     HttpClientModule,
     NgFor,
+    FormsModule,
   ],
   providers: [
     provideBrowserGlobalErrorListeners()

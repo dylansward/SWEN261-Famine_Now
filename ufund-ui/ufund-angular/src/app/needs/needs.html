@@ -13,10 +13,17 @@
       </div>
       <div *ngIf="need.current">
         <p> {{need.id}} </p>
+        <label for="curr_name">name: {{curr_name}}</label>
+        <input type="text" [(ngModel)]="curr_name" name="curr_name">
         <p> {{need.name}} </p>
+        <label for="curr_cost">cost: {{curr_cost}}</label>
+        <input type="number" [(ngModel)]="curr_cost" name="curr_cost">
         <p> {{need.cost}} </p>
+        <label for="curr_quanity">quantity: {{curr_quanity}}</label>
+        <input type="number" [(ngModel)]="curr_quanity" name="curr_quantity">
         <p> {{need.quantity}} </p>
-        <button (click)="startEdit(need)">Edit</button>
+        <button (click)="updateEdit(need)">Update</button>
+        <button (click)="discardEdit(need)">Discard Changes</button>
       </div>
   </li>
 </ul>
