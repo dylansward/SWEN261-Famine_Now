@@ -47,4 +47,15 @@ export class Needs implements OnInit {
     console.log("end editing");
     n.current = false;
   }
+
+  add(name:string): void {
+    name = name.trim();
+    if(!name) {return;}
+    this.backend.addNeed({name} as Need).subscribe(need => {this.needs.push(need)});
+  }
+
+  delete(need: Need): void {
+    this.needs = this.needs.filter(n => n !== need);
+    this.backend.deleteNeed(need.id).subscribe();
+  }
 }
