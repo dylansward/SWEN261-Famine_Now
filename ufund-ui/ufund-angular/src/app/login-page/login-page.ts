@@ -9,7 +9,7 @@ import { HelperBasket } from '../helper-basket';
   styleUrl: './login-page.css'
 })
 export class LoginPage {
- username: string = '';
+  username: string = '';
   password: string = '';
 
   constructor(private helper: HelperBasket) { }

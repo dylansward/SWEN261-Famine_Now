@@ -1,0 +1,12 @@
+<div *ngIf="isLoggedOut()">
+    <button routerLink="/login-page">Login</button>
+</div>
+<div *ngIf="isUser()">
+    <span>{{ getUsername() }} </span>
+    <button routerLink="/view-basket">View Basket</button>
+    <button routerLink="/login-page">Logout</button>
+</div>
+<div *ngIf="isAdmin()">
+    <span>UFUND ADMIN</span>
+    <button routerLink="/login-page">Logout</button>
+</div>
