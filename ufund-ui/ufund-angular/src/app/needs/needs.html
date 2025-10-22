@@ -3,6 +3,18 @@
 
 <!--this still needs to be updated to have a need-detail or something similar for functionality but this is a quick solution-->
 <ul class="needs">
+  <div>
+    <form>
+    <p>create needs console</p>
+    <p>Name: <input type="text" #name></p>
+    <p>Cost: <input type="number" #cost></p>
+    <p>Quantity: <input type="number" #quantity></p>
+    <button (click)="add(name, cost, quantity)">Create Need</button>
+    </form>
+  </div>
+  <div>
+    <p>Search for Needs <input type="text" (input)="searchNeeds(search.value)" #search></p>
+  </div>
   <li *ngFor="let need of needs">
       <div *ngIf="!need.current">
         <p> {{need.id}} </p>
@@ -10,18 +22,13 @@
         <p> {{need.cost}} </p>
         <p> {{need.quantity}} </p>
         <button (click)="startEdit(need)">Edit</button>
+        <button (click)="delete(need)">Delete</button>
       </div>
       <div *ngIf="need.current">
         <p> {{need.id}} </p>
-        <label for="curr_name">name: {{curr_name}}</label>
-        <input type="text" [(ngModel)]="curr_name" name="curr_name">
-        <p> {{need.name}} </p>
-        <label for="curr_cost">cost: {{curr_cost}}</label>
-        <input type="number" [(ngModel)]="curr_cost" name="curr_cost">
-        <p> {{need.cost}} </p>
-        <label for="curr_quanity">quantity: {{curr_quanity}}</label>
-        <input type="number" [(ngModel)]="curr_quanity" name="curr_quantity">
-        <p> {{need.quantity}} </p>
+        <p><input type="text" [(ngModel)]="curr_name" name="curr_name"></p>
+        <p><input type="number" [(ngModel)]="curr_cost" name="curr_cost"></p>
+        <p><input type="number" [(ngModel)]="curr_quanity" name="curr_quantity"></p>
         <button (click)="updateEdit(need)">Update</button>
         <button (click)="discardEdit(need)">Discard Changes</button>
       </div>
