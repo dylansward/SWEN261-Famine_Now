@@ -3,7 +3,7 @@
 
 <!--this still needs to be updated to have a need-detail or something similar for functionality but this is a quick solution-->
 <ul class="needs">
-  <div>
+  <div *ngIf="isAdmin()">
     <form>
     <p>create needs console</p>
     <p>Name: <input type="text" #name></p>
@@ -21,8 +21,10 @@
         <p> {{need.name}} </p>
         <p> {{need.cost}} </p>
         <p> {{need.quantity}} </p>
-        <button (click)="startEdit(need)">Edit</button>
-        <button (click)="delete(need)">Delete</button>
+        <div *ngIf="isAdmin()">
+          <button (click)="startEdit(need)">Edit</button>
+          <button (click)="delete(need)">Delete</button>
+        </div>
       </div>
       <div *ngIf="need.current">
         <p> {{need.id}} </p>
