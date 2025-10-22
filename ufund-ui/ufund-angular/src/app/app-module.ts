@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 
+
 @NgModule({
   declarations: [
     App,
@@ -22,6 +23,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule,
     NgFor,
+    FormsModule,
   ],
   providers: [
     provideBrowserGlobalErrorListeners()
