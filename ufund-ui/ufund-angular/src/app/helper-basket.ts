@@ -33,7 +33,7 @@ export class HelperBasket {
         if (this.baskets[i].user === username) {
           this.current_basket = this.baskets[i];
           this.createNewBasket = false;
-          console.log("BASKET EXISTS");
+          this.updateBasketItems();
         }
       }
     });
@@ -43,10 +43,17 @@ export class HelperBasket {
     if (this.current_basket.contents.length > 0) {
       if (this.createNewBasket) {
         console.log("CREATED BASKET");
-        this.backend.addBasket(this.current_basket as Basket).subscribe();
+        this.backend.addBasket(this.current_basket as Basket).subscribe(basket => {
+          this.current_basket.id = basket.id;
+        });
       } else {
         console.log("UPDATED BASKET");
         this.backend.updateBasket(this.current_basket as Basket).subscribe();
+      }
+    } else {
+      if (this.current_basket.id != -1) {
+        console.log("DELETE BASKET");
+        this.backend.deleteBasket(this.current_basket.id).subscribe();
       }
     }
     if (logout) {
@@ -61,6 +68,10 @@ export class HelperBasket {
 
   refreshBasket(): void {
     this.completeBasket(false);
+  }
+
+  clearBasket(): void {
+    this.current_basket.contents = [];
   }
 
 
@@ -95,5 +106,18 @@ export class HelperBasket {
   removeFromBasket(need: Need): void {
     this.current_basket.contents = this.current_basket.contents.filter(n => n.id !== need.id);
     console.log(this.current_basket.contents);
+  }
+
+  updateBasketItems(): void {
+    for (let n of this.current_basket.contents) {
+      this.backend.getNeed(n.id).subscribe(need => {
+        n.name = need.name;
+        n.cost = need.cost;
+        if (n.quantity > need.quantity) {
+          n.quantity = need.quantity;
+        }
+      });
+    }
+    
   }
 }

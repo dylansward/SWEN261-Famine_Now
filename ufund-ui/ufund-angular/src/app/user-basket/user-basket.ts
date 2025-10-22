@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Need } from '../need';
 import { HelperBasket } from '../helper-basket';
+import { BackendConnection } from '../backend-connection';
 
 @Component({
   selector: 'app-user-basket',
@@ -10,7 +11,7 @@ import { HelperBasket } from '../helper-basket';
 })
 export class UserBasket {
 
-  constructor(private helper: HelperBasket) { }
+  constructor(private backend: BackendConnection, private helper: HelperBasket) { }
 
   getContents(): Need[] {
     return this.helper.current_basket.contents;
@@ -25,7 +26,17 @@ export class UserBasket {
   }
 
   checkout(): void {
-    
+    this.backend.getNeeds().subscribe(needs => {
+      for (let need of needs) {
+        if (this.helper.isNeedInBasket(need)) {
+          need.quantity -= this.helper.getBasketQuantity(need);
+          this.backend.updateNeed(need).subscribe();
+        }
+      }
+      this.helper.clearBasket();
+      console.log("CHECKOUT!")
+      console.log(this.helper.current_basket.contents);
+    });
   }
 
 }

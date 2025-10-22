@@ -15,7 +15,7 @@
     <p>Search for Needs <input type="text" (input)="searchNeeds(search.value)" #search></p>
   </div>
   <li *ngFor="let need of needs">
-      <div *ngIf="!need.current">
+      <div *ngIf="displayNeed(need)">
         <p> {{need.id}} </p>
         <p> {{need.name}} </p>
         <p> {{need.cost.toFixed(2)}} </p>

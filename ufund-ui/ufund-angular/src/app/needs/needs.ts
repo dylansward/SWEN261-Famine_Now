@@ -197,4 +197,10 @@ export class Needs implements OnInit {
     
     this.helper.completeBasket();
   }
+
+  displayNeed(n: Need): boolean {
+    let temp = n.quantity > 0;
+    console.log(temp);
+    return ((this.isAdmin() && !n.current) || n.quantity > 0);
+  }
 }

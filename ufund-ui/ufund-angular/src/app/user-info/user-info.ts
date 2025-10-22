@@ -28,4 +28,10 @@ export class UserInfo {
     return this.helper.current_basket.user;
   }
 
+  logout() {
+    this.helper.completeBasket();
+
+    AppModule.user_status = 0;
+  }
+
 }
