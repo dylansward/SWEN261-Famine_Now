@@ -194,11 +194,17 @@ The model tier contains the structure for the Baskets and Needs, which also prov
 > and the results of the testing._
 
 ### Acceptance Testing
-> _**[Sprint 2 & 4]** Report on the number of user stories that have passed all their
+> _**[Sprint 4]** Report on the number of user stories that have passed all their
 > acceptance criteria tests, the number that have some acceptance
 > criteria tests failing, and the number of user stories that
 > have not had any testing yet. Highlight the issues found during
 > acceptance testing and if there are any concerns._
+
+Passed: 10;
+Failed: 0;
+Untested: 0
+
+Issues: None
 
 ### Unit Testing and Code Coverage
 > _**[Sprint 4]** Discuss your unit testing strategy. Report on the code coverage
