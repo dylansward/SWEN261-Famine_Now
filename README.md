@@ -1,4 +1,4 @@
-# U-Fund:  _____ _replace with your particular fundraising type_ _____
+# U-Fund: _Famine Now_
 # Modify this document to expand any and all sections that are applicable for a better understanding from your users/testers/collaborators (remove this comment and other instructions areas for your FINAL release)
 
 An online U-Fund system built in Java **24** and ___ _replace with other platform requirements_ ___
@@ -30,6 +30,8 @@ An online U-Fund system built in Java **24** and ___ _replace with other platfor
 
 Document any known bug or nuisance.
 If any shortcomings, make clear what these are and where they are located.
+
+As of 10/22/2025, if the admin removes something that was in the user's baskets, the user's basket will not reflect that change. If the admin changes something, it will reflect that there is a change, but it will react with an error.
 
 ## How to test it
 

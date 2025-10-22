@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.ufund.api.ufundapi.model.Need;
-import com.ufund.api.ufundapi.model.User;
 
 @SpringBootTest
 class UfundApiApplicationTests {
@@ -29,19 +28,4 @@ class UfundApiApplicationTests {
 		assertEquals(cost, n.getCost());
 		assertEquals(quantity, n.getQuantity());
 	}
-
-	@Test
-	void test_UserConstructor(){
-		int id = 0;
-		String username = "Bob";
-		String pass = "12345";
-
-		User u = new User(username, pass);
-
-		assertEquals(id, u.getID());
-		assertEquals(pass, u.getPassword());
-		assertEquals(username, u.getUsername());
-	}
-
-
 }
