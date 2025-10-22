@@ -26,9 +26,17 @@
           <button (click)="delete(need)">Delete</button>
         </div>
         <div *ngIf="isUser()">
-          <input type="number" [(ngModel)]="need.current_quantity" name="need.current_quantity" (input)="updateNeedCurrQuantity(need, basket_quantity)" #basket_quantity>
-          <span> {{ (need.current_quantity * need.cost).toFixed(2) }}  </span>
-          <button (click)="addToBasket(need)">Add to Basket</button>
+          <span *ngIf="!needInBasket(need)">
+            <input type="number" [(ngModel)]="need.current_quantity" name="need.current_quantity" (input)="updateNeedCurrQuantity(need, basket_quantity)" #basket_quantity>
+            <span> {{ (need.current_quantity * need.cost).toFixed(2) }}  </span>
+            <button (click)="addToBasket(need)">Add to Basket</button>
+          </span>
+          <span *ngIf="needInBasket(need)">
+            <input type="number" [(ngModel)]="need.current_quantity" name="need.current_quantity" (input)="updateNeedCurrQuantityInBasket(need, basket_quantity)" #basket_quantity>
+            <span> {{ (need.current_quantity * need.cost).toFixed(2) }}  </span>
+            <button (click)="addToBasket(need)">Change Quantity</button>
+            <button (click)="removeFromBasket(need)">Remove from Basket</button>
+          </span>
         </div>
       </div>
       <div *ngIf="need.current">

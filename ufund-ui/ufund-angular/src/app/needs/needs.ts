@@ -33,7 +33,11 @@ export class Needs implements OnInit {
     this.backend.getNeeds().subscribe(needs => {
       this.needs = needs
       for (let need of this.needs) {
-        need.current_quantity = 1;
+        if (this.needInBasket(need)){
+          need.current_quantity = this.helper.getBasketQuantity(need);
+        } else {
+          need.current_quantity = 1;
+        }
       }
     });
   }
@@ -42,7 +46,11 @@ export class Needs implements OnInit {
     this.backend.searchNeeds(input).subscribe(needs => {
       this.needs = needs
       for (let need of this.needs) {
-        need.current_quantity = 1;
+        if (this.needInBasket(need)){
+          need.current_quantity = this.helper.getBasketQuantity(need);
+        } else {
+          need.current_quantity = 1;
+        }
       }
     });
   }
@@ -126,10 +134,22 @@ export class Needs implements OnInit {
   }
 
   updateNeedCurrQuantity(need: Need, field: HTMLInputElement): void {
-    console.log("update need curr quantity!!!");
     let temp: number = need.current_quantity;
-    if (temp < 0) {
+    if (temp < 1) {
       temp = 0;
+    } else if (temp > need.quantity) {
+      temp = need.quantity;
+    }
+    temp = parseInt(temp.toString());
+    need.current_quantity = temp;
+
+    field.value = temp.toString();
+  }
+
+  updateNeedCurrQuantityInBasket(need: Need, field: HTMLInputElement): void {
+    let temp: number = need.current_quantity;
+    if (temp < 1) {
+      temp = 1;
     } else if (temp > need.quantity) {
       temp = need.quantity;
     }
@@ -139,6 +159,10 @@ export class Needs implements OnInit {
     field.value = temp.toString();
 
     console.log(need.current_quantity);
+  }
+
+  needInBasket(need: Need): boolean {
+    return this.helper.isNeedInBasket(need);
   }
 
   addToBasket(need: Need): void {
@@ -151,6 +175,26 @@ export class Needs implements OnInit {
       current_quantity: 0,
     };
 
+    console.log(new_need);
+    
     this.helper.addToBasket(new_need as Need);
+    
+    this.helper.refreshBasket();
+  }
+
+  removeFromBasket(need: Need): void {
+    let to_be_removed: Need = {
+      id: need.id,
+      name: need.name,
+      cost: need.cost,
+      quantity: need.current_quantity,
+      current: false,
+      current_quantity: 0,
+    };
+
+    this.helper.removeFromBasket(to_be_removed as Need);
+    need.current_quantity = 1;
+    
+    this.helper.completeBasket();
   }
 }
