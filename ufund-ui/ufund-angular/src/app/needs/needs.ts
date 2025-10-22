@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import { Need } from '../need';
 import { BackendConnection } from '../backend-connection';
 import { AppModule } from '../app-module';
+import { HelperBasket } from '../helper-basket';
 
 
 
@@ -22,7 +23,7 @@ export class Needs implements OnInit {
   new_cost: number = 0;
   new_quantity: number = 0;
 
-  constructor(private backend: BackendConnection) { }
+  constructor(private backend: BackendConnection, private helper: HelperBasket) { }
 
   ngOnInit(): void {
     this.getNeeds();
@@ -106,5 +107,13 @@ export class Needs implements OnInit {
 
   isAdmin(): boolean {
     return (AppModule.user_status == 2);
+  }
+
+  isUser(): boolean {
+    return (AppModule.user_status == 1);
+  }
+
+  addToBasket(need: Need): void {
+    this.helper.addToBasket(need);
   }
 }

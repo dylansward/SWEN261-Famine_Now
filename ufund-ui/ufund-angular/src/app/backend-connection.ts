@@ -4,12 +4,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
 import { Need } from './need';
+import { Basket } from './basket';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class BackendConnection {
-  private needURL = 'http://localhost:8080/cupboard'
+  private needURL = 'http://localhost:8080/cupboard';
+  private basketURL = 'http://localhost:8080/baskets';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json'})
   };
@@ -46,4 +49,16 @@ export class BackendConnection {
     }
     return this.http.get<Need[]>(`${this.needURL}/?name=${term}`);
   }
+
+  getBaskets(): Observable<Basket[]> {
+    return this.http.get<Basket[]>(this.basketURL);
+  }
+
+  addBasket(basket: Basket): Observable<Basket> {
+    return this.http.post<Basket>(this.basketURL, basket, this.httpOptions);
+  }
+
+  updateBasket(basket: Basket): Observable<any> {
+    return this.http.put(this.basketURL, basket, this.httpOptions);
+  }  
 }

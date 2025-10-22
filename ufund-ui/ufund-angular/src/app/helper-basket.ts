@@ -1,0 +1,63 @@
+import { Injectable } from '@angular/core';
+
+import { BackendConnection } from './backend-connection';
+import { Need } from './need';
+import { Basket } from './basket';
+
+@Injectable({
+  providedIn: 'root'
+})
+
+export class HelperBasket {
+  current_basket: Basket = {
+    id: -1,
+    user: "",
+    contents: []
+  };
+  baskets: Basket[] = [];
+  createNewBasket: boolean = false;
+  constructor(private backend: BackendConnection) { }
+  
+  setupBasket(username: string) {
+    this.backend.getBaskets().subscribe(baskets => {
+      this.baskets = baskets
+      
+      this.current_basket = {
+        id: -1,
+        user: username,
+        contents: []
+      };
+      this.createNewBasket = true;
+
+      for (let i = 0; i < this.baskets.length; i++) {
+        if (this.baskets[i].user === username) {
+          this.current_basket = this.baskets[i];
+          this.createNewBasket = false;
+          console.log("BASKET EXISTS");
+        }
+      }
+    });
+  }
+
+  completeBasket(): void {
+    if (this.current_basket.contents.length > 0) {
+      if (this.createNewBasket) {
+        console.log("CREATED BASKET");
+        this.backend.addBasket(this.current_basket as Basket).subscribe();
+      } else {
+        console.log("UPDATED BASKET");
+        this.backend.updateBasket(this.current_basket as Basket).subscribe();
+      }
+    }
+    this.createNewBasket = false;
+    this.current_basket = {
+      id: -1,
+      user: "",
+      contents: []
+    };
+  }
+
+  addToBasket(n: Need) {
+    this.current_basket.contents.push(n);
+  }
+}

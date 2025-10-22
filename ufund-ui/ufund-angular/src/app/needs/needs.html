@@ -25,6 +25,9 @@
           <button (click)="startEdit(need)">Edit</button>
           <button (click)="delete(need)">Delete</button>
         </div>
+        <div *ngIf="isUser()">
+          <button (click)="addToBasket(need)">Add to Basket</button>
+        </div>
       </div>
       <div *ngIf="need.current">
         <p> {{need.id}} </p>
