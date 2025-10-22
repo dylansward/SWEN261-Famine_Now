@@ -19,13 +19,15 @@
       <div *ngIf="!need.current">
         <p> {{need.id}} </p>
         <p> {{need.name}} </p>
-        <p> {{need.cost}} </p>
+        <p> {{need.cost.toFixed(2)}} </p>
         <p> {{need.quantity}} </p>
         <div *ngIf="isAdmin()">
           <button (click)="startEdit(need)">Edit</button>
           <button (click)="delete(need)">Delete</button>
         </div>
         <div *ngIf="isUser()">
+          <input type="number" [(ngModel)]="need.current_quantity" name="need.current_quantity" (input)="updateNeedCurrQuantity(need, basket_quantity)" #basket_quantity>
+          <span> {{ (need.current_quantity * need.cost).toFixed(2) }}  </span>
           <button (click)="addToBasket(need)">Add to Basket</button>
         </div>
       </div>
@@ -33,7 +35,7 @@
         <p> {{need.id}} </p>
         <p><input type="text" [(ngModel)]="curr_name" name="curr_name"></p>
         <p><input type="number" [(ngModel)]="curr_cost" name="curr_cost"></p>
-        <p><input type="number" [(ngModel)]="curr_quanity" name="curr_quantity"></p>
+        <p><input type="number" [(ngModel)]="curr_quantity" name="curr_quantity"></p>
         <button (click)="updateEdit(need)">Update</button>
         <button (click)="discardEdit(need)">Discard Changes</button>
       </div>

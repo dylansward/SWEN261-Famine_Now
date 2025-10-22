@@ -58,6 +58,12 @@ export class HelperBasket {
   }
 
   addToBasket(n: Need) {
+    for (let need of this.current_basket.contents) {
+      if (n.id === need.id) {
+        need.quantity = n.quantity;
+        return;
+      }
+    }
     this.current_basket.contents.push(n);
   }
 }
