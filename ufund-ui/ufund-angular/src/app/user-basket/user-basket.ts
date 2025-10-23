@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Need } from '../need';
 import { HelperBasket } from '../helper-basket';
 import { BackendConnection } from '../backend-connection';
