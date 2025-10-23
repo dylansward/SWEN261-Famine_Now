@@ -1,7 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { Need } from '../need';
 import { BackendConnection } from '../backend-connection';
-import {FormsModule} from '@angular/forms';
+import { AppModule } from '../app-module';
+
 
 
 @Component({
@@ -101,5 +102,9 @@ export class Needs implements OnInit {
   delete(need: Need): void {
     this.needs = this.needs.filter(n => n !== need);
     this.backend.deleteNeed(need.id).subscribe();
+  }
+
+  isAdmin(): boolean {
+    return (AppModule.user_status == 2);
   }
 }
