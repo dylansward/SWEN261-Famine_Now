@@ -3,12 +3,19 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
+  flex-direction: row-reverse;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .header h1 {
-  margin: 0 auto;
   text-align: center;
-  flex: 1;
+  position: absolute;
+  margin: auto;
+  width: 100%;
+  z-index: -1;
+  margin: -10px -20px;
 }
 
 .header-buttons {
@@ -26,4 +33,5 @@ button {
     margin: 2px;
     font-family: monospace;
     background-image: linear-gradient(to top, blue, blue, rgb(124, 124, 255));
+    position: sticky;
 }
