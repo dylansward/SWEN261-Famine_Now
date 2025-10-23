@@ -36,26 +36,20 @@ export class HelperBasket {
           this.updateBasketItems();
         }
       }
+      this.refreshBasket();
     });
   }
 
   completeBasket(logout: boolean = true): void {
-    if (this.current_basket.contents.length > 0) {
-      if (this.createNewBasket) {
-        console.log("CREATED BASKET");
-        this.backend.addBasket(this.current_basket as Basket).subscribe(basket => {
-          this.current_basket.id = basket.id;
-          this.createNewBasket = false;
-        });
-      } else {
-        console.log("UPDATED BASKET");
-        this.backend.updateBasket(this.current_basket as Basket).subscribe();
-      }
+    if (this.createNewBasket) {
+      console.log("CREATED BASKET");
+      this.backend.addBasket(this.current_basket as Basket).subscribe(basket => {
+        this.current_basket.id = basket.id;
+        this.createNewBasket = false;
+      });
     } else {
-      if (this.current_basket.id != -1) {
-        console.log("DELETE BASKET");
-        this.backend.deleteBasket(this.current_basket.id).subscribe();
-      }
+      console.log("UPDATED BASKET");
+      this.backend.updateBasket(this.current_basket as Basket).subscribe();
     }
     if (logout) {
       this.createNewBasket = false;

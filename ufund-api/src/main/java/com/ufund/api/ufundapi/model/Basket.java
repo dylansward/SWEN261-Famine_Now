@@ -71,7 +71,7 @@ public class Basket {
     @Override
     public String toString() {
         String contentsString = "[";
-        if(contents != null) {
+        if(contents.length > 0) {
             for(int i = 0; i<contents.length-1; i++) {
                 contentsString += contents[i].toString() + ", ";
             }

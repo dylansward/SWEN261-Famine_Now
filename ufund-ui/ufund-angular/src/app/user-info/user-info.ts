@@ -25,6 +25,7 @@ export class UserInfo {
   }
 
   getUsername(): string {
+    console.log(this.helper.current_basket.user);
     return this.helper.current_basket.user;
   }
 

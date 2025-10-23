@@ -35,7 +35,6 @@ export class UserBasket {
       }
       this.helper.clearBasket();
       console.log("CHECKOUT!")
-      console.log(this.helper.current_basket.contents);
     });
   }
 

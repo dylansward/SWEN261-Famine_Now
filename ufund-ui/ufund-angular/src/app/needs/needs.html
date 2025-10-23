@@ -7,7 +7,7 @@
       <p>Cost: $<input type="number" #cost></p>
       <p>Quantity: <input type="number" #quantity></p>
     </div>
-    <button (click)="add(name, cost, quantity)">Create Need</button>
+    <button (click)="add(name, cost, quantity)" class="creation-button">Create Need</button>
     </form>
   </div>
   <div>
@@ -20,18 +20,18 @@
         <p> ${{need.cost.toFixed(2)}} </p>
         <p> {{need.quantity}} Remaining</p>
         <div *ngIf="isAdmin()" class="buttons">
-          <button (click)="startEdit(need)">Edit</button>
-          <button (click)="delete(need)">Delete</button>
+          <button (click)="startEdit(need)" class="creation-button">Edit</button>
+          <button (click)="delete(need)" class="removal-button">Delete</button>
         </div>
         <div *ngIf="isUser()">
           <div *ngIf="!needInBasket(need)" class="buttons">
             <p><input type="number" [(ngModel)]="need.current_quantity" name="need.current_quantity" (input)="updateNeedCurrQuantity(need, basket_quantity)" #basket_quantity><br> ${{ (need.current_quantity * need.cost).toFixed(2) }}</p>
-            <p><button (click)="addToBasket(need)">Add to Basket</button></p>
+            <p><button (click)="addToBasket(need)" class="creation-button">Add to Basket</button></p>
           </div>
           <div *ngIf="needInBasket(need)" class="buttons">
             <p><input type="number" [(ngModel)]="need.current_quantity" name="need.current_quantity" (input)="updateNeedCurrQuantityInBasket(need, basket_quantity)" #basket_quantity><br> ${{ (need.current_quantity * need.cost).toFixed(2) }}</p>
-            <p><button (click)="addToBasket(need)">Change Quantity</button></p>
-            <p><button (click)="removeFromBasket(need)">Remove from Basket</button></p>
+            <p><button (click)="addToBasket(need)" class="creation-button">Change Quantity</button></p>
+            <p><button (click)="removeFromBasket(need)" class="removal-button">Remove from Basket</button></p>
           </div>
         </div>
       </div>

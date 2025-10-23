@@ -97,3 +97,11 @@ button {
     margin: 2px;
     font-family: monospace;
 }
+
+.removal-button:hover {
+    background-image: linear-gradient(to top, red, red, rgb(255, 125, 125));
+} 
+
+.creation-button:hover {
+    background-image: linear-gradient(to top, rgb(0, 182, 0), rgb(0, 182, 0), rgb(94, 194, 94));
+} 
