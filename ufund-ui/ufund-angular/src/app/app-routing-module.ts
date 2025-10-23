@@ -5,7 +5,7 @@ import { Needs } from './needs/needs';
 import { UserBasket } from './user-basket/user-basket';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/cupboard', pathMatch: 'full' },
+  {path: '', redirectTo: '/cupboard', pathMatch: 'full' },
   {path: 'login-page', component: LoginPage},
   {path: 'cupboard', component: Needs},
   {path: 'view-basket', component: UserBasket}

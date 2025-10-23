@@ -1,13 +1,12 @@
-<p>needs works!</p>
-<p>run "mvn compile exec:java" in ufund-api folder to see them if you can't</p>
-
 <ul class="needs">
   <div *ngIf="isAdmin()">
     <form>
-    <p>create needs console</p>
-    <p>Name: <input type="text" #name></p>
-    <p>Cost: <input type="number" #cost></p>
-    <p>Quantity: <input type="number" #quantity></p>
+    <div class="create-console">
+      <h2>Need Creator</h2>
+      <p>Name: <input type="text" #name></p>
+      <p>Cost: $<input type="number" #cost></p>
+      <p>Quantity: <input type="number" #quantity></p>
+    </div>
     <button (click)="add(name, cost, quantity)">Create Need</button>
     </form>
   </div>
@@ -16,35 +15,35 @@
   </div>
   <li *ngFor="let need of needs">
       <div *ngIf="displayNeed(need)">
-        <p> {{need.id}} </p>
-        <p> {{need.name}} </p>
-        <p> {{need.cost.toFixed(2)}} </p>
-        <p> {{need.quantity}} </p>
-        <div *ngIf="isAdmin()">
+        <h3> {{need.id}} </h3>
+        <h2> {{need.name}} </h2>
+        <p> ${{need.cost.toFixed(2)}} </p>
+        <p> {{need.quantity}} Remaining</p>
+        <div *ngIf="isAdmin()" class="buttons">
           <button (click)="startEdit(need)">Edit</button>
           <button (click)="delete(need)">Delete</button>
         </div>
         <div *ngIf="isUser()">
-          <span *ngIf="!needInBasket(need)">
-            <input type="number" [(ngModel)]="need.current_quantity" name="need.current_quantity" (input)="updateNeedCurrQuantity(need, basket_quantity)" #basket_quantity>
-            <span> {{ (need.current_quantity * need.cost).toFixed(2) }}  </span>
-            <button (click)="addToBasket(need)">Add to Basket</button>
-          </span>
-          <span *ngIf="needInBasket(need)">
-            <input type="number" [(ngModel)]="need.current_quantity" name="need.current_quantity" (input)="updateNeedCurrQuantityInBasket(need, basket_quantity)" #basket_quantity>
-            <span> {{ (need.current_quantity * need.cost).toFixed(2) }}  </span>
-            <button (click)="addToBasket(need)">Change Quantity</button>
-            <button (click)="removeFromBasket(need)">Remove from Basket</button>
-          </span>
+          <div *ngIf="!needInBasket(need)" class="buttons">
+            <p><input type="number" [(ngModel)]="need.current_quantity" name="need.current_quantity" (input)="updateNeedCurrQuantity(need, basket_quantity)" #basket_quantity><br> ${{ (need.current_quantity * need.cost).toFixed(2) }}</p>
+            <p><button (click)="addToBasket(need)">Add to Basket</button></p>
+          </div>
+          <div *ngIf="needInBasket(need)" class="buttons">
+            <p><input type="number" [(ngModel)]="need.current_quantity" name="need.current_quantity" (input)="updateNeedCurrQuantityInBasket(need, basket_quantity)" #basket_quantity><br> ${{ (need.current_quantity * need.cost).toFixed(2) }}</p>
+            <p><button (click)="addToBasket(need)">Change Quantity</button></p>
+            <p><button (click)="removeFromBasket(need)">Remove from Basket</button></p>
+          </div>
         </div>
       </div>
       <div *ngIf="need.current">
-        <p> {{need.id}} </p>
-        <p><input type="text" [(ngModel)]="curr_name" name="curr_name"></p>
-        <p><input type="number" [(ngModel)]="curr_cost" name="curr_cost"></p>
-        <p><input type="number" [(ngModel)]="curr_quantity" name="curr_quantity"></p>
-        <button (click)="updateEdit(need)">Update</button>
-        <button (click)="discardEdit(need)">Discard Changes</button>
+        <h3> {{need.id}} </h3>
+        <h2> Name: <input type="text" [(ngModel)]="curr_name" name="curr_name"></h2>
+        <p> Cost: $<input type="number" [(ngModel)]="curr_cost" name="curr_cost"></p>
+        <p> Quanity: <input type="number" [(ngModel)]="curr_quantity" name="curr_quantity"></p>
+        <div class="buttons">
+          <button (click)="updateEdit(need)">Update</button>
+          <button (click)="discardEdit(need)">Discard Changes</button>
+        </div>
       </div>
   </li>
 </ul>

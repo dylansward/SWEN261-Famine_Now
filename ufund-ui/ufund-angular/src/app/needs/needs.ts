@@ -136,7 +136,7 @@ export class Needs implements OnInit {
   updateNeedCurrQuantity(need: Need, field: HTMLInputElement): void {
     let temp: number = need.current_quantity;
     if (temp < 1) {
-      temp = 0;
+      temp = 1;
     } else if (temp > need.quantity) {
       temp = need.quantity;
     }
@@ -195,12 +195,12 @@ export class Needs implements OnInit {
     this.helper.removeFromBasket(to_be_removed as Need);
     need.current_quantity = 1;
     
-    this.helper.completeBasket();
+    this.helper.refreshBasket();
   }
 
   displayNeed(n: Need): boolean {
     let temp = n.quantity > 0;
     console.log(temp);
-    return ((this.isAdmin() && !n.current) || n.quantity > 0);
+    return ((this.isAdmin() && !n.current) || (n.quantity > 0 && !this.isAdmin()));
   }
 }

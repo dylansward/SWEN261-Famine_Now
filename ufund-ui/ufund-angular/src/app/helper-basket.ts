@@ -107,6 +107,7 @@ export class HelperBasket {
   removeFromBasket(need: Need): void {
     this.current_basket.contents = this.current_basket.contents.filter(n => n.id !== need.id);
     console.log(this.current_basket.contents);
+    console.log(this.current_basket.contents.length);
   }
 
   updateBasketItems(): void {

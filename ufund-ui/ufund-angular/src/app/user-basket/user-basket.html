@@ -1,11 +1,13 @@
-<p>user-basket works!</p>
-
 <ul class="needs">
   <li *ngFor="let need of getContents()">
-    <p> Name: {{need.name}} </p>
-    <p> Per Item Cost: {{need.cost.toFixed(2)}} <span> Total Cost: {{(need.quantity * need.cost).toFixed(2) }}  </span></p>
-    <p> Amount in Cart {{need.quantity}} </p>
+    <div>
+      <p> Name: {{need.name}} </p>
+      <p> Per Item Cost: {{need.cost.toFixed(2)}} <span> Total Cost: {{(need.quantity * need.cost).toFixed(2) }}  </span></p>
+      <p> Amount in Cart {{need.quantity}} </p>
+    </div>
   </li>
-  <p><strong>Absolute Total Cost: {{getBasketCost()}}</strong></p>
-  <button (click)="checkout()">Checkout</button>
+  <div>
+    <p><strong>Absolute Total Cost: {{getBasketCost()}}</strong></p>
+    <button (click)="checkout()">Checkout</button>
+  </div>
 </ul>
