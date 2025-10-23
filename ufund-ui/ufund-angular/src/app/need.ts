@@ -4,4 +4,5 @@ export interface Need {
   cost: number;
   quantity: number;
   current: boolean;
+  current_quantity: number;
 }

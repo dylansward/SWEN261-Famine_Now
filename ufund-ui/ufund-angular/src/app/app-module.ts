@@ -8,6 +8,8 @@ import { Needs } from './needs/needs';
 import { LoginPage } from './login-page/login-page';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { UserInfo } from './user-info/user-info';
+import { UserBasket } from './user-basket/user-basket';
 
 
 
@@ -16,6 +18,8 @@ import { FormsModule } from '@angular/forms';
     App,
     Needs,
     LoginPage,
+    UserInfo,
+    UserBasket,
   ],
   imports: [
     BrowserModule,

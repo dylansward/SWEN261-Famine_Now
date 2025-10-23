@@ -1,7 +1,6 @@
 <p>needs works!</p>
 <p>run "mvn compile exec:java" in ufund-api folder to see them if you can't</p>
 
-<!--this still needs to be updated to have a need-detail or something similar for functionality but this is a quick solution-->
 <ul class="needs">
   <div *ngIf="isAdmin()">
     <form>
@@ -16,21 +15,34 @@
     <p>Search for Needs <input type="text" (input)="searchNeeds(search.value)" #search></p>
   </div>
   <li *ngFor="let need of needs">
-      <div *ngIf="!need.current">
+      <div *ngIf="displayNeed(need)">
         <p> {{need.id}} </p>
         <p> {{need.name}} </p>
-        <p> {{need.cost}} </p>
+        <p> {{need.cost.toFixed(2)}} </p>
         <p> {{need.quantity}} </p>
         <div *ngIf="isAdmin()">
           <button (click)="startEdit(need)">Edit</button>
           <button (click)="delete(need)">Delete</button>
+        </div>
+        <div *ngIf="isUser()">
+          <span *ngIf="!needInBasket(need)">
+            <input type="number" [(ngModel)]="need.current_quantity" name="need.current_quantity" (input)="updateNeedCurrQuantity(need, basket_quantity)" #basket_quantity>
+            <span> {{ (need.current_quantity * need.cost).toFixed(2) }}  </span>
+            <button (click)="addToBasket(need)">Add to Basket</button>
+          </span>
+          <span *ngIf="needInBasket(need)">
+            <input type="number" [(ngModel)]="need.current_quantity" name="need.current_quantity" (input)="updateNeedCurrQuantityInBasket(need, basket_quantity)" #basket_quantity>
+            <span> {{ (need.current_quantity * need.cost).toFixed(2) }}  </span>
+            <button (click)="addToBasket(need)">Change Quantity</button>
+            <button (click)="removeFromBasket(need)">Remove from Basket</button>
+          </span>
         </div>
       </div>
       <div *ngIf="need.current">
         <p> {{need.id}} </p>
         <p><input type="text" [(ngModel)]="curr_name" name="curr_name"></p>
         <p><input type="number" [(ngModel)]="curr_cost" name="curr_cost"></p>
-        <p><input type="number" [(ngModel)]="curr_quanity" name="curr_quantity"></p>
+        <p><input type="number" [(ngModel)]="curr_quantity" name="curr_quantity"></p>
         <button (click)="updateEdit(need)">Update</button>
         <button (click)="discardEdit(need)">Discard Changes</button>
       </div>
