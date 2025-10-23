@@ -45,6 +45,7 @@ export class HelperBasket {
         console.log("CREATED BASKET");
         this.backend.addBasket(this.current_basket as Basket).subscribe(basket => {
           this.current_basket.id = basket.id;
+          this.createNewBasket = false;
         });
       } else {
         console.log("UPDATED BASKET");
