@@ -13,3 +13,9 @@ button {
 span {
     width: fit-content;
 }
+
+:host {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

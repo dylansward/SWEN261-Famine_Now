@@ -1,0 +1,44 @@
+body {
+  font-family: sans-serif;
+  background: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.lootbox-container {
+  text-align: center;
+}
+
+.lootbox {
+  width: 120px;
+  height: 120px;
+  background: #ccc;
+  border: 2px solid #999;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto;
+  font-size: 40px;
+}
+
+button {
+  padding: 8px 16px;
+  border: none;
+  background: blue;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+.result {
+  margin-top: 15px;
+  font-size: 18px;
+}

@@ -20,8 +20,10 @@
 
 .header-buttons {
   display: flex;
+  align-items: center;
   gap: 10px;
 }
+
 
 button {
     padding: 6px;

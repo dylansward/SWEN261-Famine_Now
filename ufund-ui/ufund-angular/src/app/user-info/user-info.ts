@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HelperBasket } from '../helper-basket';
 import { AppModule } from '../app-module';
+import { App } from '../app';
 
 @Component({
   selector: 'app-user-info',
@@ -33,6 +34,14 @@ export class UserInfo {
     this.helper.completeBasket();
 
     AppModule.user_status = 0;
+  }
+  LootBoxVisible() :boolean{
+    if (AppModule.user_status == 1){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 
 }
