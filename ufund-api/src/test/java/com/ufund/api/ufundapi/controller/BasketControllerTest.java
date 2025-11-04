@@ -123,7 +123,7 @@ public class BasketControllerTest {
 
     @Test
     public void testUpdateBasket() {
-        Basket test = new Basket(0, "HE NO LONGER HAS!!!", null);
+        Basket test = new Basket(0, "HE NO LONGER HAS!!!", new Need[0]);
         ResponseEntity<Basket> result = controller.updateBasket(test);
 
         assertEquals(HttpStatus.OK, result.getStatusCode());
