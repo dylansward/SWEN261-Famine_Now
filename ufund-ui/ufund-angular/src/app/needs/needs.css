@@ -59,10 +59,23 @@ button {
     z-index: 2;
 }
 
+.buttons {
+    position: absolute;
+    bottom: 4px;
+    z-index: 2;
+    display: flex;
+    width: 90%;
+    flex-direction: row;
+}
+
 .removal-button:hover {
     background-image: linear-gradient(to top, red, red, rgb(255, 125, 125));
 } 
 
 .creation-button:hover {
     background-image: linear-gradient(to top, rgb(0, 182, 0), rgb(0, 182, 0), rgb(94, 194, 94));
-} 
+}
+
+.needs {
+    margin: 10px;
+}

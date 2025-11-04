@@ -1,31 +1,31 @@
 :root {
   --bg-color: linear-gradient(white);
 
-  --header-color: red;
+  --header-color: black;
   --header-font-family: serif;
   --header-bg-color: linear-gradient(transparent);
 
-  --h2-color: blue;
-  --h2-font-family: serif;
+  --h2-color: black;
+  --h2-font-family: sans-serif;
 
-  --text-color: yellow;
+  --text-color: black;
   --text-font-family: sans-serif;
 
-  --input-color: black;
-  --input-rounded: 0px;
-  --input-border-width: 2px;
-  --input-border-color: transparent;
+  --input-color: white;
+  --input-rounded: 1px;
+  --input-border-width: 1px;
+  --input-border-color: black;
   --input-border-style: solid;
 
-  --button-color: linear-gradient(red);
-  --button-rounded: 0px;
+  --button-color: linear-gradient(#d4d4d4);
+  --button-rounded: 5px;
   --button-border-width: 2px;
   --button-border-color: transparent;
   --button-border-style: solid;
-  --button-text-color: green;
+  --button-text-color: black;
   --button-font-family: monospace;
 
-  --need-color: orange;
+  --need-color: #e5e5e5;
 }
 
 body {
