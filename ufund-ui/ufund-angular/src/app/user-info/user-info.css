@@ -12,6 +12,7 @@ button {
 
 span {
     width: fit-content;
+    color: blue;
 }
 
 :host {
