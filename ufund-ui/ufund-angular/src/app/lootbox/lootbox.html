@@ -1,9 +1,13 @@
-<div class="lootbox-container">
-  <h2>Open Your Loot Box</h2>
-  <div id="lootbox" class="lootbox">
-    animation
+<div class="container">
+  <div class="spinBtn" (click)="spinButton()">Spin</div>
+  <div class="wheel" #wheel>
+    <div class="number" style="--i:1;--clr:#4b0082"><span>Blue header</span></div>
+    <div class="number" style="--i:2;--clr:#c71585"><span>Halloween body</span></div>
+    <div class="number" style="--i:3;--clr:#ff69b4"><span>Pink buttons</span></div>
+    <div class="number" style="--i:4;--clr:#f020f0"><span>Red textarea</span></div>
+    <div class="number" style="--i:5;--clr:#dc143c"><span>Purple text</span></div>
+    <div class="number" style="--i:6;--clr:#9400d3"><span>Large font</span></div>
+    <div class="number" style="--i:7;--clr:#a174d1"><span>Small font</span></div>
+    <div class="number" style="--i:8;--clr:#e61919"><span>New buttons</span></div>
   </div>
-  <button id="openBtn">Open Box</button>
-
-  <div id="result" class="result"></div>
 </div>
