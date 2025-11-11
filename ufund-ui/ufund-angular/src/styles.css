@@ -1,1 +1,172 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --bg-color: linear-gradient(white);
+
+  --header-color: black;
+  --header-font-family: serif;
+  --header-bg-color: linear-gradient(transparent);
+
+  --h2-color: black;
+  --h2-font-family: sans-serif;
+
+  --text-color: black;
+  --text-font-family: sans-serif;
+
+  --input-color: white;
+  --input-rounded: 1px;
+  --input-border-width: 1px;
+  --input-border-color: black;
+  --input-border-style: solid;
+
+  --button-color: linear-gradient(#d4d4d4);
+  --button-rounded: 5px;
+  --button-border-width: 2px;
+  --button-border-color: transparent;
+  --button-border-style: solid;
+  --button-text-color: black;
+  --button-font-family: monospace;
+
+  --need-color: #e5e5e5;
+}
+
+body {
+  background-image: var(--bg-color);
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  width: calc(100% - 40px);
+  margin: 0;
+  padding: 10px 20px;
+
+  background-image: var(--header-bg-color);
+}
+
+.header h1 {
+  text-align: center;
+  position: absolute;
+  margin: auto;
+  width: 100%;
+  z-index: -1;
+  margin: 0 -20px;
+
+  font-family: var(--header-font-family), serif;
+  color: var(--header-color);
+}
+
+.header-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+button {
+    padding: 6px;
+    font-size: 1rem;
+    margin: 2px;
+    position: sticky;
+
+    background-image: var(--button-color);
+    border-radius: var(--button-rounded);
+    border-width: var(--button-border-width);
+    border-color: var(--button-border-color);
+    border-style: var(--button-border-style);
+    font-family: var(--button-font-family), monospace;
+    color: var(--button-text-color);
+}
+
+.login-container {
+  width: 240px;
+  margin: 80px auto;
+}
+
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 12px;
+  font-size: 2rem;
+
+  color: var(--h2-color);
+  font-family: var(--h2-font-family);
+}
+.login-container label {
+  margin-bottom: 20px;
+  font-size: 1rem;
+
+  color: var(--text-color);
+  font-family: var(--text-font-family);
+}
+
+.login-container input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+.login-container button {
+  width: 100%;
+  margin: 10px auto;
+}
+
+input {
+  color: var(--text-color);
+  font-family: var(--text-font-family);
+  background-color: var(--input-color);
+  border-radius: var(--input-rounded);
+  border-width: var(--input-border-width);
+  border-color: var(--input-border-color);
+  border-style: var(--input-border-style);
+}
+
+h2 {
+    font-size: 1.5rem;
+    
+    color: var(--h2-color);
+    font-family: var(--h2-font-family);
+}
+
+h2 > input {
+    font-size: 1.5rem;
+    
+    color: var(--h2-color);
+    font-family: var(--h2-font-family);
+    background-color: var(--input-color);
+    border-radius: var(--input-rounded);
+    border-width: var(--input-border-width);
+    border-color: var(--input-border-color);
+    border-style: var(--input-border-style);
+}
+
+p {
+    font-size: 1rem;
+
+    color: var(--text-color);
+    font-family: var(--text-font-family);
+}
+
+p > input {
+    font-size: 1rem;
+    
+    color: var(--text-color);
+    font-family: var(--text-font-family);
+    background-color: var(--input-color);
+    border-radius: var(--input-rounded);
+    border-width: var(--input-border-width);
+    border-color: var(--input-border-color);
+    border-style: var(--input-border-style);
+}
+
+.need {
+    background-color: var(--need-color);
+    border: 4px solid var(--need-color);
+    border-radius: 4px;
+}
+

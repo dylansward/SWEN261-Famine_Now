@@ -1,7 +1,7 @@
 <ul class="needs">
   <div *ngIf="isAdmin()">
     <form>
-    <div class="create-console">
+    <div class="create-console" class="need">
       <h2>Need Creator</h2>
       <p>Name: <input type="text" #name></p>
       <p>Cost: $<input type="number" #cost></p>
@@ -14,7 +14,7 @@
     <p>Search for Needs <input type="text" (input)="searchNeeds(search.value)" #search></p>
   </div>
   <li *ngFor="let need of needs">
-      <div *ngIf="displayNeed(need)">
+      <div *ngIf="displayNeed(need)" class="need">
         <h3> {{need.id}} </h3>
         <h2> {{need.name}} </h2>
         <p> ${{need.cost.toFixed(2)}} </p>
@@ -35,7 +35,7 @@
           </div>
         </div>
       </div>
-      <div *ngIf="need.current">
+      <div *ngIf="need.current" class="need">
         <h3> {{need.id}} </h3>
         <h2> Name: <input type="text" [(ngModel)]="curr_name" name="curr_name"></h2>
         <p> Cost: $<input type="number" [(ngModel)]="curr_cost" name="curr_cost"></p>
