@@ -3,7 +3,7 @@ import { Need } from '../need';
 import { BackendConnection } from '../backend-connection';
 import { AppModule } from '../app-module';
 import { HelperBasket } from '../helper-basket';
-
+import { CssEquipper } from '../css-equipper';
 
 
 @Component({
@@ -23,7 +23,7 @@ export class Needs implements OnInit {
   new_cost: number = 0;
   new_quantity: number = 0;
 
-  constructor(private backend: BackendConnection, private helper: HelperBasket) { }
+  constructor(private backend: BackendConnection, private helper: HelperBasket, private css: CssEquipper) { }
 
   ngOnInit(): void {
     this.getNeeds();
@@ -130,6 +130,7 @@ export class Needs implements OnInit {
   }
 
   isUser(): boolean {
+    this.css.set_default_styles()
     return (AppModule.user_status == 1);
   }
 
