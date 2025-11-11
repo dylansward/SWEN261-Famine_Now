@@ -12,11 +12,20 @@ public class Basket {
     private static final Logger LOG = Logger.getLogger(Basket.class.getName());
 
     // Package private for tests
-    static final String STRING_FORMAT = "Basket [id=%d, user=%s, contents=%s]";
+    static final String STRING_FORMAT = "Basket [id=%d, user=\"%s\", contents=%s, styles=%s, sel_background=\"%s\", sel_header=\"%s\", sel_subheader=\"%s\", sel_text=\"%s\", sel_input=\"%s\", sel_button=\"%s\"]";
 
     @JsonProperty("id") private int id;
     @JsonProperty("user") private String user;
+
     @JsonProperty("contents") private Need[] contents;
+
+    @JsonProperty("styles") private String[] styles;
+    @JsonProperty("sel_background") private String sel_background;
+    @JsonProperty("sel_header") private String sel_header; 
+    @JsonProperty("sel_subheader") private String sel_subheader;
+    @JsonProperty("sel_text") private String sel_text;
+    @JsonProperty("sel_input") private String sel_input; 
+    @JsonProperty("sel_button") private String sel_button; 
 
     /**
      * Create a basket with the given id, username, and basket contents
@@ -29,7 +38,9 @@ public class Basket {
      * is not provided in the JSON object, the Java field gets the default Java
      * value, i.e. 0 for int
      */
-    public Basket(@JsonProperty("id") int id, @JsonProperty("user") String user, @JsonProperty("contents") Need[] contents) {
+    public Basket(@JsonProperty("id") int id, @JsonProperty("user") String user, @JsonProperty("contents") Need[] contents, @JsonProperty("styles") String[] styles,
+        @JsonProperty("sel_background") String sel_background, @JsonProperty("sel_header") String sel_header, @JsonProperty("sel_subheader") String sel_subheader,
+        @JsonProperty("sel_text") String sel_text, @JsonProperty("sel_input") String sel_input, @JsonProperty("sel_button") String sel_button) {
         this.id = id;
         this.user = user;
         this.contents = contents;
@@ -65,6 +76,42 @@ public class Basket {
      */
     public void setContents(Need[] contents) {this.contents = contents;}
 
+
+    public String[] getStyles() {return styles;}
+
+    public void setStyles(String[] styles) {this.styles = styles;}
+
+
+    public String getBackground() {return sel_background;}
+
+    public void setBackground(String background) {this.sel_background = background;}
+
+
+    public String getHeader() {return sel_header;}
+
+    public void setHeader(String header) {this.sel_header = header;}
+
+
+    public String getSubheader() {return sel_subheader;}
+
+    public void setSubheader(String subheader) {this.sel_subheader = subheader;}
+
+
+    public String getText() {return sel_text;}
+
+    public void setText(String text) {this.sel_text = text;}
+
+
+    public String getInput() {return sel_input;}
+
+    public void setInput(String input) {this.sel_input = input;}
+
+
+    public String getButton() {return sel_button;}
+
+    public void setButton(String button) {this.sel_button = button;}
+
+
     /**
      * {@inheritDoc}
      */
@@ -79,6 +126,15 @@ public class Basket {
         }
         contentsString += "]";
 
-        return String.format(STRING_FORMAT,id,user,contentsString);
+        String stylesString = "[";
+        if(styles.length > 0) {
+            for(int i = 0; i<styles.length-1; i++) {
+                stylesString += styles[i] + ", ";
+            }
+            stylesString += styles[styles.length-1];
+        }
+        stylesString += "]";
+
+        return String.format(STRING_FORMAT,id,user,contentsString, stylesString, sel_background, sel_header, sel_subheader, sel_text, sel_input, sel_button);
     }
 }

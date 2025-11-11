@@ -78,7 +78,7 @@ public class BasketsFileDAO implements BasketsDAO {
     @Override
     public Basket createBasket(Basket basket) throws IOException {
         synchronized(baskets) {
-            Basket newBasket = new Basket(nextId(), basket.getUser(), basket.getContents());
+            Basket newBasket = new Basket(nextId(), basket.getUser(), basket.getContents(), basket.getStyles(), basket.getBackground(), basket.getHeader(), basket.getSubheader(), basket.getText(), basket.getInput(), basket.getButton());
             baskets.put(newBasket.getId(), newBasket);
             save();
             return newBasket;
