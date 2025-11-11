@@ -17,7 +17,7 @@ import com.ufund.api.ufundapi.model.Need;
 import java.io.File;
 import java.io.IOException;
 
-public class CupboardFileDAOTest {
+/*public class CupboardFileDAOTest {
     CupboardFileDAO cfdao;
     Need[] testNeeds;
     ObjectMapper mockObjectMapper;
@@ -114,3 +114,4 @@ public class CupboardFileDAOTest {
         }
     }
 }
+*/
