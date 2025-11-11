@@ -163,6 +163,10 @@ The model tier contains the structure for the Baskets and Needs, which also prov
 > section will follow the same instructions that are given for the View
 > Tier above._
 
+- View is the same as in the Sprint 2. We implemented a new system to our website which changes view of our website. 
+User is able to spin a wheel and get ui elements for the website. The wheel is accesable for each checkout that is more than
+10$, if there is 20$ at the checkout, user will receive 2 spins and so on. 
+
 > _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
 > static models (UML class diagrams) with some details such as associations (connections) between classes, and critical attributes and methods. (**Be sure** to revisit the Static **UML Review Sheet** to ensure your class diagrams are using correct format and syntax.)_
 > 
@@ -174,12 +178,16 @@ The model tier contains the structure for the Baskets and Needs, which also prov
 ![](DesignDocAssets/Controller-OO-Principle.png)
 
 2. Our product follows the **Single Responsibility** principle, which states that classes should only have one responsibility. It does this by splitting the four main responsibilities--processing HTTP requests and modifying data in the server for both the cupboard and the user baskets--into four different classes. By doing this, each of these classes only has one responsibility, and they are, in turn, simpler to understand.
+
+3. Our website go along with the **Open/Closed** principle, which states that objects or entities should be open for extension but closed for modification. Clear example is that our app.ts and app.html not being modified rather extended into
+different pages.
 <!-- Dependency injection/inversion -->
 <!-- OO principle 4 -->
 
 > _**[Sprint 3 & 4]** Will eventually address upto **4 key OO Principles** in your final design. Follow guidance in augmenting those completed in previous Sprints as indicated to you by instructor. Be sure to include any diagrams (or clearly refer to ones elsewhere in your Tier sections above) to support your claims._
 
 > _**[Sprint 3 & 4]** OO Design Principles should span across **all tiers.**_
+
 
 ## Static Code Analysis/Future Design Improvements
 > _**[Sprint 4]** With the results from the Static Code Analysis exercise, 
