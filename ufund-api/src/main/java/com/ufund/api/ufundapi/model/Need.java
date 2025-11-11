@@ -12,12 +12,13 @@ public class Need {
     private static final Logger LOG = Logger.getLogger(Need.class.getName());
 
     // Package private for tests
-    static final String STRING_FORMAT = "Need [id=%d, name=%s, cost=%.2f, quantity=%d]";
+    static final String STRING_FORMAT = "Need [id=%d, name=%s, cost=%.2f, quantity=%d, location=%s]";
 
     @JsonProperty("id") private int id;
     @JsonProperty("name") private String name;
     @JsonProperty("cost") private double cost;
     @JsonProperty("quantity") private int quantity;
+    @JsonProperty("location") private String location;
 
     /**
      * Create a need with the given id, name, cost, and quantity
@@ -31,11 +32,12 @@ public class Need {
      * is not provided in the JSON object, the Java field gets the default Java
      * value, i.e. 0 for int
      */
-    public Need(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("cost") double cost, @JsonProperty("quantity") int quantity) {
+    public Need(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("cost") double cost, @JsonProperty("quantity") int quantity, @JsonProperty("location") String location) {
         this.id = id;
         this.name = name;
         this.cost = cost;
         this.quantity = quantity;
+        this.location = location;
     }
 
     /**
@@ -80,12 +82,16 @@ public class Need {
      */
     public void setQuantity(int quantity) {this.quantity = quantity;}
 
+    public String getLocation() {return location;}
+
+    public void setLocation(String location) {this.location = location;}
+
 
     /**
      * {@inheritDoc}
      */
     @Override
     public String toString() {
-        return String.format(STRING_FORMAT,id,name,cost,quantity);
+        return String.format(STRING_FORMAT,id,name,cost,quantity,location);
     }
 }
