@@ -20,6 +20,7 @@ export class Lootbox implements AfterViewInit {
     "New buttons"
   ];
 
+  selected = "";
   ngAfterViewInit() {}
 
     spinButton() {
@@ -33,7 +34,7 @@ export class Lootbox implements AfterViewInit {
 
     const result = this.results[index];
     console.log("Result:", result);
+    this.selected = this.results[index];
   }
-
 
 }
