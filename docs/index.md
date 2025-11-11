@@ -4,8 +4,10 @@ Welcome to the PROJECT Project!
 
 ## Team
 
-* MEMBER1
-* MEMBER2
+* Anthony Salsbury
+* Dylan Sward
+* Vladislav Kudin
+* Giovanni Pirrih
 
 ## [Design Documentation](DesignDoc)
 
