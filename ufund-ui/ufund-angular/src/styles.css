@@ -1,9 +1,10 @@
 :root {
   --bg-color: linear-gradient(white);
+  --header-bg-color: linear-gradient(transparent);
+  --need-color: #e5e5e5;
 
   --header-color: black;
   --header-font-family: serif;
-  --header-bg-color: linear-gradient(transparent);
 
   --h2-color: black;
   --h2-font-family: sans-serif;
@@ -13,19 +14,13 @@
 
   --input-color: white;
   --input-rounded: 1px;
-  --input-border-width: 1px;
-  --input-border-color: black;
-  --input-border-style: solid;
+  --input-border: 1px solid black;
 
   --button-color: linear-gradient(#d4d4d4);
   --button-rounded: 5px;
-  --button-border-width: 2px;
-  --button-border-color: transparent;
-  --button-border-style: solid;
+  --button-border: 2px solid transparent;
   --button-text-color: black;
   --button-font-family: monospace;
-
-  --need-color: #e5e5e5;
 }
 
 body {
@@ -76,9 +71,7 @@ button {
 
     background-image: var(--button-color);
     border-radius: var(--button-rounded);
-    border-width: var(--button-border-width);
-    border-color: var(--button-border-color);
-    border-style: var(--button-border-style);
+    border: var(--button-border);
     font-family: var(--button-font-family), monospace;
     color: var(--button-text-color);
 }
@@ -121,9 +114,7 @@ input {
   font-family: var(--text-font-family);
   background-color: var(--input-color);
   border-radius: var(--input-rounded);
-  border-width: var(--input-border-width);
-  border-color: var(--input-border-color);
-  border-style: var(--input-border-style);
+  border: var(--input-border);
 }
 
 h2 {
@@ -140,9 +131,7 @@ h2 > input {
     font-family: var(--h2-font-family);
     background-color: var(--input-color);
     border-radius: var(--input-rounded);
-    border-width: var(--input-border-width);
-    border-color: var(--input-border-color);
-    border-style: var(--input-border-style);
+    border: var(--input-border);
 }
 
 p {
@@ -158,10 +147,7 @@ p > input {
     color: var(--text-color);
     font-family: var(--text-font-family);
     background-color: var(--input-color);
-    border-radius: var(--input-rounded);
-    border-width: var(--input-border-width);
-    border-color: var(--input-border-color);
-    border-style: var(--input-border-style);
+    border: var(--input-border);
 }
 
 .need {
