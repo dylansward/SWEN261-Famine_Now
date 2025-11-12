@@ -41,8 +41,8 @@ public class CupboardFileDAO implements NeedDAO {
     private Need[] getNeedsArray(String containsText, String containsLocation) {
         ArrayList<Need> needArrayList = new ArrayList<>();
         for (Need need : needs.values()) {
-            if ((containsText == null || need.getName().toLowerCase().contains(containsText)) &&
-                (containsLocation == null || need.getLocation().toLowerCase().contains(containsLocation))) {
+            if ((containsText == null || need.getName().toLowerCase().contains(containsText.toLowerCase())) &&
+                (containsLocation == null || need.getLocation().toLowerCase().contains(containsLocation.toLowerCase()))) {
                 needArrayList.add(need);
             }
         }
@@ -132,7 +132,7 @@ public class CupboardFileDAO implements NeedDAO {
     @Override
     public Need[] searchNeeds(String containsText, String containsLocation) throws IOException {
         synchronized(needs) {
-            return getNeedsArray(containsText.toLowerCase(), containsLocation.toLowerCase());
+            return getNeedsArray(containsText, containsLocation);
         }
     }
 }

@@ -3,6 +3,7 @@ export interface Need {
   name: string;
   cost: number;
   quantity: number;
+  location: string;
   current: boolean;
   current_quantity: number;
 }

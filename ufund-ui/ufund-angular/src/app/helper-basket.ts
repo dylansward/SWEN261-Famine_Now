@@ -12,7 +12,14 @@ export class HelperBasket {
   current_basket: Basket = {
     id: -1,
     user: "",
-    contents: []
+    contents: [],
+    styles: ["background-default", "header-default", "subheader-default", "text-default", "input-default", "button-default"],
+    sel_background: "background-default",
+    sel_header: "header-default",
+    sel_subheader: "subheader-default",
+    sel_text: "text-default",
+    sel_input: "input-default",
+    sel_button: "button-default"
   };
   baskets: Basket[] = [];
   createNewBasket: boolean = false;
@@ -25,7 +32,14 @@ export class HelperBasket {
       this.current_basket = {
         id: -1,
         user: username,
-        contents: []
+        contents: [],
+        styles: ["background-default", "header-default", "subheader-default", "text-default", "input-default", "button-default"],
+        sel_background: "background-default",
+        sel_header: "header-default",
+        sel_subheader: "subheader-default",
+        sel_text: "text-default",
+        sel_input: "input-default",
+        sel_button: "button-default"
       };
       this.createNewBasket = true;
 
@@ -34,6 +48,7 @@ export class HelperBasket {
           this.current_basket = this.baskets[i];
           this.createNewBasket = false;
           this.updateBasketItems();
+          this.cleanBasketStyles();
         }
       }
       this.refreshBasket();
@@ -56,7 +71,14 @@ export class HelperBasket {
       this.current_basket = {
         id: -1,
         user: "",
-        contents: []
+        contents: [],
+        styles: ["background-default", "header-default", "subheader-default", "text-default", "input-default", "button-default"],
+        sel_background: "background-default",
+        sel_header: "header-default",
+        sel_subheader: "subheader-default",
+        sel_text: "text-default",
+        sel_input: "input-default",
+        sel_button: "button-default"
       };
     }
   }
@@ -116,4 +138,30 @@ export class HelperBasket {
     }
     
   }
+
+  cleanBasketStyles(): void {
+    if (this.current_basket.styles === undefined || this.current_basket.styles === null) {
+      this.current_basket.styles = ["background-default", "header-default", "subheader-default", "text-default", "input-default", "button-default"]
+    }
+    if (this.current_basket.sel_background === undefined || this.current_basket.sel_background === null || this.current_basket.sel_background === "") {
+      this.current_basket.sel_background = "background-default"
+    }
+    if (this.current_basket.sel_header === undefined || this.current_basket.sel_header === null || this.current_basket.sel_header === "") {
+      this.current_basket.sel_header = "header-default"
+    }
+    if (this.current_basket.sel_subheader === undefined || this.current_basket.sel_subheader === null || this.current_basket.sel_subheader === "") {
+      this.current_basket.sel_subheader = "subheader-default"
+    }
+    if (this.current_basket.sel_text === undefined || this.current_basket.sel_text === null || this.current_basket.sel_text === "") {
+      this.current_basket.sel_text = "text-default"
+    }
+    if (this.current_basket.sel_input === undefined || this.current_basket.sel_input === null || this.current_basket.sel_input === "") {
+      this.current_basket.sel_input = "input-default"
+    }
+    if (this.current_basket.sel_button === undefined || this.current_basket.sel_button === null || this.current_basket.sel_button === "") {
+      this.current_basket.sel_button = "button-default"
+    }
+  }
 }
+
+  

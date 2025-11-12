@@ -95,7 +95,7 @@ public class CupboardController {
     }
     @GetMapping("/")
     public ResponseEntity<Need[]> searchNeeds(@RequestParam String name, @RequestParam String location) {
-        LOG.info("GET /cupboard/?name="+name + "&location=" + location);
+        LOG.info("GET /cupboard/?name="+name+"&location="+location);
 
         try {
             Need[] needs = needDAO.searchNeeds(name, location);

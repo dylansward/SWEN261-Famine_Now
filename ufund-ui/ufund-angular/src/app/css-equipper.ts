@@ -19,8 +19,12 @@ export class CssEquipper {
   }
 
   set_styles_user(user: Basket): void {
-    
-
+    this.set_background(user.sel_background);
+    this.set_header(user.sel_header);
+    this.set_subheader(user.sel_subheader);
+    this.set_text(user.sel_text);
+    this.set_input(user.sel_input);
+    this.set_button(user.sel_button);
   }
 
   set_background(bg: string): void {

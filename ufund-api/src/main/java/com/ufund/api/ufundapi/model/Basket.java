@@ -12,7 +12,7 @@ public class Basket {
     private static final Logger LOG = Logger.getLogger(Basket.class.getName());
 
     // Package private for tests
-    static final String STRING_FORMAT = "Basket [id=%d, user=\"%s\", contents=%s, styles=%s, sel_background=\"%s\", sel_header=\"%s\", sel_subheader=\"%s\", sel_text=\"%s\", sel_input=\"%s\", sel_button=\"%s\"]";
+    static final String STRING_FORMAT = "Basket [id=%d, user=%s, contents=%s, styles=%s, sel_background=%s, sel_header=%s, sel_subheader=%s, sel_text=%s, sel_input=%s, sel_button=%s]";
 
     @JsonProperty("id") private int id;
     @JsonProperty("user") private String user;
@@ -44,6 +44,13 @@ public class Basket {
         this.id = id;
         this.user = user;
         this.contents = contents;
+        this.styles = styles;
+        this.sel_background = sel_background;
+        this.sel_header = sel_header;
+        this.sel_subheader = sel_subheader;
+        this.sel_text = sel_text;
+        this.sel_input = sel_button;
+        this.sel_button = sel_button;
     }
 
     /**
@@ -84,32 +91,32 @@ public class Basket {
 
     public String getBackground() {return sel_background;}
 
-    public void setBackground(String background) {this.sel_background = background;}
+    public void setBackground(String sel_background) {this.sel_background = sel_background;}
 
 
     public String getHeader() {return sel_header;}
 
-    public void setHeader(String header) {this.sel_header = header;}
+    public void setHeader(String sel_header) {this.sel_header = sel_header;}
 
 
     public String getSubheader() {return sel_subheader;}
 
-    public void setSubheader(String subheader) {this.sel_subheader = subheader;}
+    public void setSubheader(String sel_subheader) {this.sel_subheader = sel_subheader;}
 
 
     public String getText() {return sel_text;}
 
-    public void setText(String text) {this.sel_text = text;}
+    public void setText(String sel_text) {this.sel_text = sel_text;}
 
 
     public String getInput() {return sel_input;}
 
-    public void setInput(String input) {this.sel_input = input;}
+    public void setInput(String sel_input) {this.sel_input = sel_input;}
 
 
     public String getButton() {return sel_button;}
 
-    public void setButton(String button) {this.sel_button = button;}
+    public void setButton(String sel_button) {this.sel_button = sel_button;}
 
 
     /**
