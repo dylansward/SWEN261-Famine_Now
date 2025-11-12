@@ -12,10 +12,11 @@ public class Basket {
     private static final Logger LOG = Logger.getLogger(Basket.class.getName());
 
     // Package private for tests
-    static final String STRING_FORMAT = "Basket [id=%d, user=%s, contents=%s, styles=%s, sel_background=%s, sel_header=%s, sel_subheader=%s, sel_text=%s, sel_input=%s, sel_button=%s]";
+    static final String STRING_FORMAT = "Basket [id=%d, user=%s, spent=%.2f, contents=%s, styles=%s, sel_background=%s, sel_header=%s, sel_subheader=%s, sel_text=%s, sel_input=%s, sel_button=%s]";
 
     @JsonProperty("id") private int id;
     @JsonProperty("user") private String user;
+    @JsonProperty("spent") private double spent;
 
     @JsonProperty("contents") private Need[] contents;
 
@@ -38,11 +39,12 @@ public class Basket {
      * is not provided in the JSON object, the Java field gets the default Java
      * value, i.e. 0 for int
      */
-    public Basket(@JsonProperty("id") int id, @JsonProperty("user") String user, @JsonProperty("contents") Need[] contents, @JsonProperty("styles") String[] styles,
+    public Basket(@JsonProperty("id") int id, @JsonProperty("user") String user, @JsonProperty("spent") double spent, @JsonProperty("contents") Need[] contents, @JsonProperty("styles") String[] styles,
         @JsonProperty("sel_background") String sel_background, @JsonProperty("sel_header") String sel_header, @JsonProperty("sel_subheader") String sel_subheader,
         @JsonProperty("sel_text") String sel_text, @JsonProperty("sel_input") String sel_input, @JsonProperty("sel_button") String sel_button) {
         this.id = id;
         this.user = user;
+        this.spent = spent;
         this.contents = contents;
         this.styles = styles;
         this.sel_background = sel_background;
@@ -82,6 +84,11 @@ public class Basket {
      * @param contents The contents of the basket
      */
     public void setContents(Need[] contents) {this.contents = contents;}
+
+    
+    public double getSpent() {return spent;}
+
+    public void setSpent(double spent) {this.spent = spent;}
 
 
     public String[] getStyles() {return styles;}
