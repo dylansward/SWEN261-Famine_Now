@@ -1,0 +1,17 @@
+<p>user-styles works!</p>
+
+<div class="styles">
+    <h1>Choose your Styles</h1>
+    <div class="need">
+        <h2>Currently Equipped:</h2>
+        <p>Equipped Background: {{getBackground()}}</p>
+        <p>Equipped Header: {{getHeader()}}</p>
+        <p>Equipped Subheader: {{getSubheader()}}</p>
+        <p>Equipped Text: {{getText()}}</p>
+        <p>Equipped Input: {{getInput()}}</p>
+        <p>Equipped Button: {{getButton()}}</p>
+    </div>
+    <ul>
+    <li *ngFor="let str of getBackgrounds()">{{display(str)}}</li>
+    </ul>
+</div>

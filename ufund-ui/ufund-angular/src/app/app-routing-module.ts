@@ -4,13 +4,15 @@ import { LoginPage } from './login-page/login-page';
 import { Needs } from './needs/needs';
 import { UserBasket } from './user-basket/user-basket';
 import { Lootbox } from './lootbox/lootbox';
+import { UserStyles } from './user-styles/user-styles';
 
 const routes: Routes = [
   {path: '', redirectTo: '/cupboard', pathMatch: 'full' },
   {path: 'login-page', component: LoginPage},
   {path: 'cupboard', component: Needs},
   {path: 'view-basket', component: UserBasket},
-  {path: 'lootbox', component: Lootbox}
+  {path: 'lootbox', component: Lootbox},
+  {path: 'user-styles', component: UserStyles}
 ];
 
 @NgModule({
