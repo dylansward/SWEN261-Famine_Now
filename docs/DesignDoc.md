@@ -150,7 +150,7 @@ The ViewModel Tier includes the following classes:
 ### Model Tier
 
 The Model Tier includes the following classes:
-- Basket: Defines the structure of user baskets that are stored by the server.
+- Basket: Defines the structure of user baskets that are stored by the server. Since each basket is tied to a particular user, these objects will also store the user-owned page styles and the particular ones that they have selected.
 - BasketsDAO (interface)
 - BasketsFileDAO: Provides implementation for the BasketsDAO functions in order to save, retrieve, update, and delete user baskets stored on the server.
 - Need: Defines the structure of the famine needs that are stored by the server.
@@ -159,13 +159,9 @@ The Model Tier includes the following classes:
 
 The model tier contains the structure for the Baskets and Needs, which also provides the JSON structure for those objects as they appear in the server. Additionally, this tier contains the FileDAOs, which contain the functions that execute CRUD commands onto the server. The BasketsFileDAO works with the JSON data for Baskets, while the CupboardFileDAO works with the data for Needs.
 
-> _**[Sprint 3 & 4]** Provide a summary of this tier of your architecture. This
+> _**[Sprint 4]** Provide a summary of this tier of your architecture. This
 > section will follow the same instructions that are given for the View
 > Tier above._
-
-- View is the same as in the Sprint 2. We implemented a new system to our website which changes view of our website. 
-User is able to spin a wheel and get ui elements for the website. The wheel is accesable for each checkout that is more than
-10$, if there is 20$ at the checkout, user will receive 2 spins and so on. 
 
 > _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
 > static models (UML class diagrams) with some details such as associations (connections) between classes, and critical attributes and methods. (**Be sure** to revisit the Static **UML Review Sheet** to ensure your class diagrams are using correct format and syntax.)_
@@ -179,14 +175,15 @@ User is able to spin a wheel and get ui elements for the website. The wheel is a
 
 2. Our product follows the **Single Responsibility** principle, which states that classes should only have one responsibility. It does this by splitting the four main responsibilities--processing HTTP requests and modifying data in the server for both the cupboard and the user baskets--into four different classes. By doing this, each of these classes only has one responsibility, and they are, in turn, simpler to understand.
 
-3. Our website go along with the **Open/Closed** principle, which states that objects or entities should be open for extension but closed for modification. Clear example is that our app.ts and app.html not being modified rather extended into
-different pages.
+3. Our website goes along with the **Open/Closed** principle, which states that objects or entities should be open for extension but closed for modification. An example of this in our project is app.ts and app.html not being modified but rather extended into different pages.
 <!-- Dependency injection/inversion -->
 <!-- OO principle 4 -->
 
-> _**[Sprint 3 & 4]** Will eventually address upto **4 key OO Principles** in your final design. Follow guidance in augmenting those completed in previous Sprints as indicated to you by instructor. Be sure to include any diagrams (or clearly refer to ones elsewhere in your Tier sections above) to support your claims._
 
-> _**[Sprint 3 & 4]** OO Design Principles should span across **all tiers.**_
+
+> _**[Sprint 4]** Will eventually address upto **4 key OO Principles** in your final design. Follow guidance in augmenting those completed in previous Sprints as indicated to you by instructor. Be sure to include any diagrams (or clearly refer to ones elsewhere in your Tier sections above) to support your claims._
+
+> _**[Sprint 4]** OO Design Principles should span across **all tiers.**_
 
 
 ## Static Code Analysis/Future Design Improvements
@@ -228,4 +225,4 @@ The low coverage for the controller tier can be attributed to missing tests for 
 > those._
 
 ## Ongoing Rationale
->_**[Sprint 3 & 4]** Throughout the project, provide a time stamp **(yyyy/mm/dd): Sprint # and description** of any _**mayor**_ team decisions or design milestones/changes and corresponding justification._
+>_**[Sprint 4]** Throughout the project, provide a time stamp **(yyyy/mm/dd): Sprint # and description** of any _**mayor**_ team decisions or design milestones/changes and corresponding justification._
