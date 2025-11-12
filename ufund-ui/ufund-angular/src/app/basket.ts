@@ -3,6 +3,7 @@ import { Need } from './need';
 export interface Basket {
   id: number;
   user: string;
+  spent: number;
   contents: Need[];
   styles: string[];
   sel_background: string;

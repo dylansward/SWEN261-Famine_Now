@@ -12,6 +12,7 @@ export class HelperBasket {
   current_basket: Basket = {
     id: -1,
     user: "",
+    spent: 0,
     contents: [],
     styles: ["background-default", "header-default", "subheader-default", "text-default", "input-default", "button-default"],
     sel_background: "background-default",
@@ -32,6 +33,7 @@ export class HelperBasket {
       this.current_basket = {
         id: -1,
         user: username,
+        spent: 0,
         contents: [],
         styles: ["background-default", "header-default", "subheader-default", "text-default", "input-default", "button-default"],
         sel_background: "background-default",
@@ -49,6 +51,9 @@ export class HelperBasket {
           this.createNewBasket = false;
           this.updateBasketItems();
           this.cleanBasketStyles();
+          if (this.current_basket.spent === null || this.current_basket.spent === undefined) {
+            this.current_basket.spent = 0;
+          }
         }
       }
       this.refreshBasket();
@@ -71,6 +76,7 @@ export class HelperBasket {
       this.current_basket = {
         id: -1,
         user: "",
+        spent: 0,
         contents: [],
         styles: ["background-default", "header-default", "subheader-default", "text-default", "input-default", "button-default"],
         sel_background: "background-default",
