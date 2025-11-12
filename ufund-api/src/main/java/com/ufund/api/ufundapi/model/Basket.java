@@ -89,34 +89,34 @@ public class Basket {
     public void setStyles(String[] styles) {this.styles = styles;}
 
 
-    public String getBackground() {return sel_background;}
+    public String getSel_background() {return sel_background;}
 
-    public void setBackground(String sel_background) {this.sel_background = sel_background;}
-
-
-    public String getHeader() {return sel_header;}
-
-    public void setHeader(String sel_header) {this.sel_header = sel_header;}
+    public void setSel_background(String sel_background) {this.sel_background = sel_background;}
 
 
-    public String getSubheader() {return sel_subheader;}
+    public String getSel_header() {return sel_header;}
 
-    public void setSubheader(String sel_subheader) {this.sel_subheader = sel_subheader;}
-
-
-    public String getText() {return sel_text;}
-
-    public void setText(String sel_text) {this.sel_text = sel_text;}
+    public void setSel_header(String sel_header) {this.sel_header = sel_header;}
 
 
-    public String getInput() {return sel_input;}
+    public String getSel_subheader() {return sel_subheader;}
 
-    public void setInput(String sel_input) {this.sel_input = sel_input;}
+    public void setSel_subheader(String sel_subheader) {this.sel_subheader = sel_subheader;}
 
 
-    public String getButton() {return sel_button;}
+    public String getSel_text() {return sel_text;}
 
-    public void setButton(String sel_button) {this.sel_button = sel_button;}
+    public void setSel_text(String sel_text) {this.sel_text = sel_text;}
+
+
+    public String getSel_input() {return sel_input;}
+
+    public void setSel_input(String sel_input) {this.sel_input = sel_input;}
+
+
+    public String getSel_button() {return sel_button;}
+
+    public void setSel_button(String sel_button) {this.sel_button = sel_button;}
 
 
     /**
