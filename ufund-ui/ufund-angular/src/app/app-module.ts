@@ -14,7 +14,6 @@ import { Lootbox } from './lootbox/lootbox';
 import { UserStyles } from './user-styles/user-styles';
 
 
-
 @NgModule({
   declarations: [
     App,

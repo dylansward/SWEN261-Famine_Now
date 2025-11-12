@@ -11,22 +11,44 @@
         <p>Equipped Input: {{getInput()}}</p>
         <p>Equipped Button: {{getButton()}}</p>
     </div>
-    <ul>
-    <li *ngFor="let str of getBackgrounds()">{{display(str)}}</li>
-    </ul>
-    <ul>
-    <li *ngFor="let str of getHeaders()">{{display(str)}}</li>
-    </ul>
-    <ul>
-    <li *ngFor="let str of getSubheaders()">{{display(str)}}</li>
-    </ul>
-    <ul>
-    <li *ngFor="let str of getTexts()">{{display(str)}}</li>
-    </ul>
-    <ul>
-    <li *ngFor="let str of getInputs()">{{display(str)}}</li>
-    </ul>
-    <ul>
-    <li *ngFor="let str of getButtons()">{{display(str)}}</li>
-    </ul>
+    <div *ngIf="isAdmin()">
+        <div class="flex_buttons">
+        <button *ngFor="let str of getAllBackgrounds()" (click)="equip(str)">{{display(str)}}</button>
+        </div>
+        <div class="flex_buttons">
+        <button *ngFor="let str of getAllHeaders()" (click)="equip(str)">{{display(str)}}</button>
+        </div>
+        <div class="flex_buttons">
+        <button *ngFor="let str of getAllSubheaders()" (click)="equip(str)">{{display(str)}}</button>
+        </div>
+        <div class="flex_buttons">
+        <button *ngFor="let str of getAllTexts()" (click)="equip(str)">{{display(str)}}</button>
+        </div>
+        <div class="flex_buttons">
+        <button *ngFor="let str of getAllInputs()" (click)="equip(str)">{{display(str)}}</button>
+        </div>
+        <div class="flex_buttons">
+        <button *ngFor="let str of getAllButtons()" (click)="equip(str)">{{display(str)}}</button>
+        </div>
+    </div>
+    <div *ngIf="isUser()">
+        <div class="flex_buttons">
+        <button *ngFor="let str of getBackgrounds()" (click)="equip(str)">{{display(str)}}</button>
+        </div>
+        <div class="flex_buttons">
+        <button *ngFor="let str of getHeaders()" (click)="equip(str)">{{display(str)}}</button>
+        </div>
+        <div class="flex_buttons">
+        <button *ngFor="let str of getSubheaders()" (click)="equip(str)">{{display(str)}}</button>
+        </div>
+        <div class="flex_buttons">
+        <button *ngFor="let str of getTexts()" (click)="equip(str)">{{display(str)}}</button>
+        </div>
+        <div class="flex_buttons">
+        <button *ngFor="let str of getInputs()" (click)="equip(str)">{{display(str)}}</button>
+        </div>
+        <div class="flex_buttons">
+        <button *ngFor="let str of getButtons()" (click)="equip(str)">{{display(str)}}</button>
+        </div>
+    </div>
 </div>

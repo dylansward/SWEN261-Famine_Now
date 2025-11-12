@@ -5,8 +5,18 @@ import { Basket } from './basket';
   providedIn: 'root'
 })
 export class CssEquipper {  
-  private all_styles: string[] = ["background-default", "header-default", "subheader-default", "text-default", "input-default", "button-default"]
+  private all_styles: string[] = [
+    "background-default", "header-default", "subheader-default", "text-default", "input-default", "button-default", 
+    "background-red", "header-red", "subheader-red", "text-red", "input-red", "button-red",
+    "background-white-red", "button-square-red", 
+    "background-black-red", "background-black",
+    "header-white", "subheader-white", "text-white", "header-white-sans", "subheader-white-serif", "text-white-serif", "input-white"
+  ]
   private doc_style = document.documentElement.style
+  
+  getAll(): string[] {
+    return this.all_styles;
+  }
 
   set_default_styles(): void {
     this.set_background("background-default");
@@ -27,6 +37,15 @@ export class CssEquipper {
     this.set_button(user.sel_button);
   }
 
+  set_styles_admin(sel_background: string, sel_header: string, sel_subheader: string, sel_text: string, sel_input: string, sel_button: string): void {
+    this.set_background(sel_background);
+    this.set_header(sel_header);
+    this.set_subheader(sel_subheader);
+    this.set_text(sel_text);
+    this.set_input(sel_input);
+    this.set_button(sel_button);
+  }
+
   set_background(bg: string): void {
     switch (bg) {
       case "background-default":
@@ -34,7 +53,27 @@ export class CssEquipper {
         this.doc_style.setProperty('--header-bg-color', 'linear-gradient(transparent)');
         this.doc_style.setProperty('--need-color', '#e5e5e5');
         break;
-    
+      case "background-red":
+        this.doc_style.setProperty('--bg-color', 'linear-gradient(#eb2222)');
+        this.doc_style.setProperty('--header-bg-color', 'linear-gradient(transparent)');
+        this.doc_style.setProperty('--need-color', '#f57373');
+        break;
+      case "background-white-red":
+        this.doc_style.setProperty('--bg-color', 'linear-gradient(white)');
+        this.doc_style.setProperty('--header-bg-color', 'linear-gradient(transparent)');
+        this.doc_style.setProperty('--need-color', '#eb2222');
+        break;
+      case "background-black-red":
+        this.doc_style.setProperty('--bg-color', 'linear-gradient(#282828)');
+        this.doc_style.setProperty('--header-bg-color', 'linear-gradient(black)');
+        this.doc_style.setProperty('--need-color', '#eb2222');
+        break;
+      case "background-black":
+        this.doc_style.setProperty('--bg-color', 'linear-gradient(#282828)');
+        this.doc_style.setProperty('--header-bg-color', 'linear-gradient(black)');
+        this.doc_style.setProperty('--need-color', 'black');
+        break;
+      
       default:
         this.doc_style.setProperty('--bg-color', 'linear-gradient(white)');
         this.doc_style.setProperty('--header-bg-color', 'linear-gradient(transparent)');
@@ -44,12 +83,24 @@ export class CssEquipper {
   }
 
   set_header(header: string): void {
+    console.log(header);
     switch (header) {
       case "header-default":
         this.doc_style.setProperty('--header-color', '#000000');
         this.doc_style.setProperty('--header-font-family', 'serif');
         break;
-    
+      case "header-red":
+        this.doc_style.setProperty('--header-color', '#ff0000');
+        this.doc_style.setProperty('--header-font-family', 'serif');
+        break;
+      case "header-white":
+        this.doc_style.setProperty('--header-color', 'white');
+        this.doc_style.setProperty('--header-font-family', 'serif');
+        break;
+      case "header-white-sans":
+        this.doc_style.setProperty('--header-color', 'white');
+        this.doc_style.setProperty('--header-font-family', 'sans-serif');
+        break;
       default:
         this.doc_style.setProperty('--header-color', '#000000');
         this.doc_style.setProperty('--header-font-family', 'serif');
@@ -61,12 +112,23 @@ export class CssEquipper {
     switch (subheader) {
       case "subheader-default":
         this.doc_style.setProperty('--h2-color', '#000000');
+        this.doc_style.setProperty('--h2-font-family', 'sans-serif');
+        break;
+      case "subheader-red":
+        this.doc_style.setProperty('--h2-color', '#9c0000');
+        this.doc_style.setProperty('--h2-font-family', 'sans-serif');
+        break;
+      case "subheader-white":
+        this.doc_style.setProperty('--h2-color', 'white');
+        this.doc_style.setProperty('--h2-font-family', 'sans-serif');
+        break;
+      case "subheader-white-serif":
+        this.doc_style.setProperty('--h2-color', 'white');
         this.doc_style.setProperty('--h2-font-family', 'serif');
         break;
-    
       default:
         this.doc_style.setProperty('--h2-color', '#000000');
-        this.doc_style.setProperty('--h2-font-family', 'serif');
+        this.doc_style.setProperty('--h2-font-family', 'sans-serif');
         break;
     }
   }
@@ -74,10 +136,21 @@ export class CssEquipper {
   set_text(text: string): void {
     switch (text) {
       case "text-default":
-        this.doc_style.setProperty('--h2-color', '#000000');
-        this.doc_style.setProperty('--h2-font-family', 'serif');
+        this.doc_style.setProperty('--text-color', '#000000');
+        this.doc_style.setProperty('--text-font-family', 'sans-serif');
         break;
-    
+      case "text-red":
+        this.doc_style.setProperty('--text-color', '#731919');
+        this.doc_style.setProperty('--text-font-family', 'sans-serif');
+        break;
+      case "text-white":
+        this.doc_style.setProperty('--text-color', 'white');
+        this.doc_style.setProperty('--text-font-family', 'sans-serif');
+        break;
+      case "text-white-serif":
+        this.doc_style.setProperty('--text-color', 'white');
+        this.doc_style.setProperty('--text-font-family', 'serif');
+        break;
       default:
         this.doc_style.setProperty('--text-color', '#000000');
         this.doc_style.setProperty('--text-font-family', 'sans-serif');
@@ -92,7 +165,16 @@ export class CssEquipper {
         this.doc_style.setProperty('--input-rounded', '0px');
         this.doc_style.setProperty('--input-border', '2px solid black');
         break;
-    
+      case "input-red":
+        this.doc_style.setProperty('--input-color', 'transparent');
+        this.doc_style.setProperty('--input-rounded', '0px');
+        this.doc_style.setProperty('--input-border', '3px solid red');
+        break
+      case "input-white":
+        this.doc_style.setProperty('--input-color', 'transparent');
+        this.doc_style.setProperty('--input-rounded', '5px');
+        this.doc_style.setProperty('--input-border', '2px solid white');
+        break
       default:
         this.doc_style.setProperty('--input-color', 'transparent');
         this.doc_style.setProperty('--input-rounded', '0px');
@@ -110,7 +192,21 @@ export class CssEquipper {
         this.doc_style.setProperty('--button-text-color', '#000000');
         this.doc_style.setProperty('--button-font-family', 'monospace');
         break;
-    
+      case "button-red":
+        this.doc_style.setProperty('--button-color', 'linear-gradient(black)');
+        this.doc_style.setProperty('--button-rounded', '5px');
+        this.doc_style.setProperty('--button-border', '2px solid transparent');
+        this.doc_style.setProperty('--button-text-color', 'red');
+        this.doc_style.setProperty('--button-font-family', 'monospace');
+        break;
+      case "button-square-red":
+        this.doc_style.setProperty('--button-color', 'linear-gradient(black)');
+        this.doc_style.setProperty('--button-rounded', '0px');
+        this.doc_style.setProperty('--button-border', '2px solid transparent');
+        this.doc_style.setProperty('--button-text-color', 'red');
+        this.doc_style.setProperty('--button-font-family', 'monospace');
+        break;
+
       default:
         this.doc_style.setProperty('--button-color', 'linear-gradient(#d4d4d4)');
         this.doc_style.setProperty('--button-rounded', '5px');

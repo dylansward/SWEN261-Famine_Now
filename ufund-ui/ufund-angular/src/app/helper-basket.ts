@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BackendConnection } from './backend-connection';
 import { Need } from './need';
 import { Basket } from './basket';
+import { CssEquipper } from './css-equipper';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,7 @@ export class HelperBasket {
   };
   baskets: Basket[] = [];
   createNewBasket: boolean = false;
-  constructor(private backend: BackendConnection) { }
+  constructor(private backend: BackendConnection, private css: CssEquipper) { }
   
   setupBasket(username: string) {
     this.backend.getBaskets().subscribe(baskets => {
@@ -54,6 +55,7 @@ export class HelperBasket {
           if (this.current_basket.spent === null || this.current_basket.spent === undefined) {
             this.current_basket.spent = 0;
           }
+          this.css.set_styles_user(this.current_basket)
         }
       }
       this.refreshBasket();

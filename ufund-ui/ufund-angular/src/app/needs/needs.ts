@@ -135,7 +135,6 @@ export class Needs implements OnInit {
   }
 
   isUser(): boolean {
-    this.css.set_default_styles()
     return (AppModule.user_status == 1);
   }
 
