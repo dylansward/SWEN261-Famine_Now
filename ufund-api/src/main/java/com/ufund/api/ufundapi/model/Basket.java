@@ -149,6 +149,6 @@ public class Basket {
         }
         stylesString += "]";
 
-        return String.format(STRING_FORMAT,id,user,contentsString, stylesString, sel_background, sel_header, sel_subheader, sel_text, sel_input, sel_button);
+        return String.format(STRING_FORMAT,id,user,spent, contentsString, stylesString, sel_background, sel_header, sel_subheader, sel_text, sel_input, sel_button);
     }
 }
