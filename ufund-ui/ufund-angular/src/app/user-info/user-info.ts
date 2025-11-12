@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HelperBasket } from '../helper-basket';
 import { AppModule } from '../app-module';
 import { App } from '../app';
+import { CssEquipper } from '../css-equipper';
 
 @Component({
   selector: 'app-user-info',
@@ -11,7 +12,7 @@ import { App } from '../app';
 })
 export class UserInfo {
 
-  constructor(private helper: HelperBasket) { }
+  constructor(private helper: HelperBasket, private css: CssEquipper) { }
   
   isAdmin(): boolean {
     return (AppModule.user_status == 2);
@@ -32,7 +33,7 @@ export class UserInfo {
 
   logout() {
     this.helper.completeBasket();
-
+    this.css.set_default_styles();
     AppModule.user_status = 0;
   }
   LootBoxVisible() :boolean{
