@@ -1,6 +1,6 @@
 :root {
   --bg-color: linear-gradient(white);
-  --header-bg-color: linear-gradient(transparent);
+  --header-bg-color: white;
   --need-color: #e5e5e5;
 
   --header-color: black;
@@ -40,11 +40,11 @@ body {
   width: calc(100% - 40px);
   margin: 0;
   padding: 10px 20px;
-
-  background-image: var(--header-bg-color);
+  
+  background-color: var(--header-bg-color);
 }
 
-.header h1 {
+h1 {
   text-align: center;
   position: absolute;
   margin: auto;
@@ -54,6 +54,13 @@ body {
 
   font-family: var(--header-font-family), serif;
   color: var(--header-color);
+}
+
+h1 > span {
+  color: var(--header-bg-color);
+  background-color: var(--need-color);
+  border: 4px solid var(--need-color);
+  border-radius: 4px;
 }
 
 .header-buttons {

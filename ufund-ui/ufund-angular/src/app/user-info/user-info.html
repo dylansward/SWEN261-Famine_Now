@@ -1,17 +1,15 @@
 <div *ngIf="isLoggedOut()">
     <button routerLink="/login-page">Login</button>
 </div>
-<div *ngIf = "LootBoxVisible()">
-    <button routerLink = "/lootbox">Cases</button>
-</div>
 <div *ngIf="isUser()">
-    <span> {{ getUsername() }} </span>
-    <button routerLink="/view-basket">View Basket</button>
+    <p> {{ getUsername() }} </p>
+    <button routerLink = "/lootbox">Spin ({{getSpins()}})</button>
     <button routerLink="/user-styles">Select Styles</button>
+    <button routerLink="/view-basket">View Basket</button>
     <button (click)="logout()" routerLink="/login-page">Logout</button>
 </div>
 <div *ngIf="isAdmin()">
-    <span>UFUND ADMIN</span>
+    <p> UFUND ADMIN </p>
     <button routerLink="/user-styles">Select Styles</button>
     <button (click)="logout()" routerLink="/login-page">Logout</button>
 </div>

@@ -11,6 +11,7 @@ import { HelperBasket } from '../helper-basket';
 export class Lootbox implements AfterViewInit {
   @ViewChild('wheel') wheel!: ElementRef;
   @ViewChild('spin') spin_button!: ElementRef;
+  private wheel_pieces = document.getElementsByClassName("number");
 
   public results: string[] = ["0", "1", "2", "3", "4", "5", "6", "7"];
   selected = "";
@@ -19,16 +20,27 @@ export class Lootbox implements AfterViewInit {
   
   setWheel(): void {
     this.results = this.css.getRandomResults(this.helper.current_basket.styles);
+    if (this.getSpins() >= 0){
+      this.spin_button.nativeElement.style.pointerEvents = 'all';
+      this.spin_button.nativeElement.style.pointer = 'all';
+    } else {
+      this.spin_button.nativeElement.style.pointerEvents = 'none';
+      this.spin_button.nativeElement.style.pointer = 'none';
+    }
   }
 
   delay(ms: number): Promise<void> {
-  return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  getSpins(): number {
+    return this.helper.getSpins();
   }
 
   ngAfterViewInit() {
     this.setWheel();
   }
-    async spinButton() {
+  async spinButton() {
     const value = Math.ceil(Math.random() * 3600) + 720;
     this.wheel.nativeElement.style.transform = `rotate(${value}deg)`;
     this.spin_button.nativeElement.style.pointerEvents = 'none';
@@ -39,14 +51,25 @@ export class Lootbox implements AfterViewInit {
     const index = Math.floor(corrected / 45);
 
     const result = this.results[index];
-    console.log("Result:", result);
     await this.delay(3000);
     this.selected = this.results[index];
     this.helper.addStyle(this.selected);
     await this.delay(1000);
-    this.setWheel();
-    this.spin_button.nativeElement.style.pointerEvents = 'all';
-    this.spin_button.nativeElement.style.pointer = 'all';
+    this.wheel.nativeElement.style.transition = 'transform 0.5s ease'
+    this.wheel.nativeElement.style.transform = `rotate(${0}deg)`;
+    for (let i: number = 0; i < 8; i++){
+      const element = this.wheel_pieces[i] as HTMLElement;
+      element.style.backgroundColor = 'white';
+      element.style.textShadow = '3px 5px  2px rgba(0, 0, 0, 0.0)';
+    }
+    await this.delay(500);
+    this.wheel.nativeElement.style.transition = 'transform 3s ease'
+    for (let i: number = 0; i < 8; i++){
+      const element = this.wheel_pieces[i] as HTMLElement;
+      element.style.backgroundColor = 'var(--clr)';
+      element.style.textShadow = '3px 5px  2px rgba(0, 0, 0, 0.15)';
+    }
+    this.setWheel();    
   }
 
 }

@@ -175,6 +175,10 @@ export class HelperBasket {
       this.current_basket.sel_button = "button-default"
     }
   }
+
+  getSpins(): number {
+    return Math.floor(this.current_basket.spent/10);
+  }
 }
 
   

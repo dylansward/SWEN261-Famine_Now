@@ -75,33 +75,33 @@ export class CssEquipper {
     switch (bg) {
       case "background-default":
         this.doc_style.setProperty('--bg-color', 'linear-gradient(white)');
-        this.doc_style.setProperty('--header-bg-color', 'linear-gradient(transparent)');
+        this.doc_style.setProperty('--header-bg-color', 'white');
         this.doc_style.setProperty('--need-color', '#e5e5e5');
         break;
       case "background-red":
         this.doc_style.setProperty('--bg-color', 'linear-gradient(#eb2222)');
-        this.doc_style.setProperty('--header-bg-color', 'linear-gradient(transparent)');
+        this.doc_style.setProperty('--header-bg-color', '#eb2222');
         this.doc_style.setProperty('--need-color', '#f57373');
         break;
       case "background-white-red":
         this.doc_style.setProperty('--bg-color', 'linear-gradient(white)');
-        this.doc_style.setProperty('--header-bg-color', 'linear-gradient(transparent)');
+        this.doc_style.setProperty('--header-bg-color', 'white');
         this.doc_style.setProperty('--need-color', '#eb2222');
         break;
       case "background-black-red":
         this.doc_style.setProperty('--bg-color', 'linear-gradient(#282828)');
-        this.doc_style.setProperty('--header-bg-color', 'linear-gradient(black)');
+        this.doc_style.setProperty('--header-bg-color', 'black');
         this.doc_style.setProperty('--need-color', '#eb2222');
         break;
       case "background-black":
         this.doc_style.setProperty('--bg-color', 'linear-gradient(#282828)');
-        this.doc_style.setProperty('--header-bg-color', 'linear-gradient(black)');
+        this.doc_style.setProperty('--header-bg-color', 'black');
         this.doc_style.setProperty('--need-color', 'black');
         break;
       
       default:
         this.doc_style.setProperty('--bg-color', 'linear-gradient(white)');
-        this.doc_style.setProperty('--header-bg-color', 'linear-gradient(transparent)');
+        this.doc_style.setProperty('--header-bg-color', 'white');
         this.doc_style.setProperty('--need-color', '#e5e5e5');
         break;
     }

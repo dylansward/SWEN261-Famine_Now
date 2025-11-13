@@ -27,7 +27,6 @@ export class UserInfo {
   }
 
   getUsername(): string {
-    console.log(this.helper.current_basket.user);
     return this.helper.current_basket.user;
   }
 
@@ -43,6 +42,10 @@ export class UserInfo {
     else{
       return false;
     }
+  }
+
+  getSpins(): number {
+    return this.helper.getSpins();
   }
 
 }

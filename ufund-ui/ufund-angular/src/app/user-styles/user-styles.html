@@ -1,7 +1,5 @@
-<p>user-styles works!</p>
-
 <div class="styles">
-    <h1>Choose your Styles</h1>
+    <h1>Choose your Styles!</h1>
     <div class="need">
         <h2>Currently Equipped:</h2>
         <p>Equipped Background: {{getBackground()}}</p>
@@ -10,6 +8,8 @@
         <p>Equipped Text: {{getText()}}</p>
         <p>Equipped Input: {{getInput()}}</p>
         <p>Equipped Button: {{getButton()}}</p>
+        <br>
+        <p>Test Input: <input type="text"></p>
     </div>
     <div *ngIf="isAdmin()">
         <div class="flex_buttons">
@@ -32,21 +32,27 @@
         </div>
     </div>
     <div *ngIf="isUser()">
+        <h2>Backgrounds:</h2>
         <div class="flex_buttons">
         <button *ngFor="let str of getBackgrounds()" (click)="equip(str)">{{display(str)}}</button>
         </div>
+        <h2>Headers:</h2>
         <div class="flex_buttons">
         <button *ngFor="let str of getHeaders()" (click)="equip(str)">{{display(str)}}</button>
         </div>
+        <h2>Subheaders:</h2>
         <div class="flex_buttons">
         <button *ngFor="let str of getSubheaders()" (click)="equip(str)">{{display(str)}}</button>
         </div>
+        <h2>Texts:</h2>
         <div class="flex_buttons">
         <button *ngFor="let str of getTexts()" (click)="equip(str)">{{display(str)}}</button>
         </div>
+        <h2>Inputs:</h2>
         <div class="flex_buttons">
         <button *ngFor="let str of getInputs()" (click)="equip(str)">{{display(str)}}</button>
         </div>
+        <h2>Buttons:</h2>
         <div class="flex_buttons">
         <button *ngFor="let str of getButtons()" (click)="equip(str)">{{display(str)}}</button>
         </div>
