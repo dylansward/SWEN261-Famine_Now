@@ -1,13 +1,33 @@
+<div class= "need">
+  <h2>Spin the "Wheel of Styles" to unlock new styles!</h2>
+  <br>
+  <p> To get more spins, spend more on our needs! <br> For every $10 spent you unlock another spin. <br><br> <strong>You have: {{getSpins()}} spins left.</strong></p>
+</div>
+
 <div class="container">
-  <div class="spinBtn" (click)="spinButton()">Spin</div>
+  <div class="spinBtn" (click)="spinButton()" #spin>Spin</div>
   <div class="wheel" #wheel>
-    <div class="number" style="--i:1;--clr:#4b0082"><span>Blue header</span></div>
-    <div class="number" style="--i:2;--clr:#c71585"><span>Halloween body</span></div>
-    <div class="number" style="--i:3;--clr:#ff69b4"><span>Pink buttons</span></div>
-    <div class="number" style="--i:4;--clr:#f020f0"><span>Red textarea</span></div>
-    <div class="number" style="--i:5;--clr:#dc143c"><span>Purple text</span></div>
-    <div class="number" style="--i:6;--clr:#9400d3"><span>Large font</span></div>
-    <div class="number" style="--i:7;--clr:#a174d1"><span>Small font</span></div>
-    <div class="number" style="--i:8;--clr:#e61919"><span>New buttons</span></div>
+    <div class="number" style="--i:1;--clr:#eb2222"><span>{{results[0]}}</span></div>
+    <div class="number" style="--i:2;--clr:#22eb33"><span>{{results[1]}}</span></div>
+    <div class="number" style="--i:3;--clr:#eb22b2"><span>{{results[2]}}</span></div>
+    <div class="number" style="--i:4;--clr:#ebc322"><span>{{results[3]}}</span></div>
+    <div class="number" style="--i:5;--clr:#2268eb"><span>{{results[4]}}</span></div>
+    <div class="number" style="--i:6;--clr:#eb9122"><span>{{results[5]}}</span></div>
+    <div class="number" style="--i:7;--clr:#22ebab"><span>{{results[6]}}</span></div>
+    <div class="number" style="--i:8;--clr:#6c22eb"><span>{{results[7]}}</span></div>
   </div>
+</div>
+
+<div class="result" #result>
+  <div class="need">
+  <h2>You got: <span class="new-num">{{selected}}</span> !</h2>
+  <div class="flex-buttons">
+    <button (click)="hideResults()">Okay</button>
+    <button (click)="quickEquip()">Equip</button>
+  </div>
+  </div>
+</div>
+
+<div class="hidden">
+  .
 </div>

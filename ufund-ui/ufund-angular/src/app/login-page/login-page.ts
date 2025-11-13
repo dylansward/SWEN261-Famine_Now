@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AppModule } from '../app-module';
 import { HelperBasket } from '../helper-basket';
+import { CssEquipper } from '../css-equipper';
 
 @Component({
   selector: 'app-login-page',
@@ -12,7 +13,7 @@ export class LoginPage {
   username: string = '';
   password: string = '';
 
-  constructor(private helper: HelperBasket) { }
+  constructor(private helper: HelperBasket, private css: CssEquipper) { }
   
 
   onSubmit() {
@@ -23,9 +24,11 @@ export class LoginPage {
 
     if (this.username == "admin"){
       AppModule.user_status = 2;
+      this.css.set_default_styles();
     } 
     else if (this.username == "" || this.username == null){
       AppModule.user_status = 0;
+      this.css.set_default_styles();
     }
     else if (this.username != null) {
       AppModule.user_status = 1;

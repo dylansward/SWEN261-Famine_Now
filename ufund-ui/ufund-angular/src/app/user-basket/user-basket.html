@@ -1,6 +1,6 @@
 <ul class="needs">
   <li *ngFor="let need of getContents()">
-    <div>
+    <div class="need">
       <p> Name: {{need.name}} </p>
       <p> Per Item Cost: {{need.cost.toFixed(2)}} <span> Total Cost: {{(need.quantity * need.cost).toFixed(2) }}  </span></p>
       <p> Amount in Cart {{need.quantity}} </p>

@@ -11,19 +11,47 @@ body{
 }
 .container {
   position: relative;
-  width: 400px;
-  height: 400px;
+  width: 450px;
+  height: 450px;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: auto;
+  margin-top: 60px;
+  overflow: visible;
 }
 
+.need {
+  align-items: center;
+  text-align: center;
+  margin: auto;
+  padding: 10px;
+  width: fit-content;
+  margin-top: 20px;
+}
+
+.result {
+  position: absolute;
+  align-items: center;
+  text-align: center;
+  opacity: 0%;
+  display: none;
+  top: 440px;
+  left: 5vw;
+  z-index: 20;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.result > .need {
+  width: 90vw;
+  height: 100px;
+}
 
 .container .spinBtn{
   position: absolute;
   width: 60px;
   height: 60px;
-  background-color: red;
+  background-color: white;
   border-radius: 50%;
   z-index: 10 ;
   display: flex;
@@ -33,18 +61,18 @@ body{
   font-weight: 500;
   color: black;
   letter-spacing: 0.2px;
-  border: 3px solid rgba(0, 0, 0, 0.80); 
+  border: 3px solid rgba(255, 255, 255, 0.80); 
   cursor: pointer;
-
+  pointer-events: all;
 }
 
 .container .spinBtn::before{
   content: '';
   position: absolute;
-  top: -30px;
-  width: 20px;
-  height: 30px;
-  background-color: red ;
+  top: -60px;
+  width: 40px;
+  height: 70px;
+  background-color: white ;
   clip-path: polygon(50% 0, 15% 100%, 85% 100%);
 
 }
@@ -55,11 +83,11 @@ body{
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #333;
+  background-color: #000;
   border-radius: 50%;
-  box-shadow: 0 0 0 5px #444, 0 0 0 15px #fff, 0 0 0 18px #111;
+  box-shadow: 0 0 0 5px #000, 0 0 0 15px #fff, 0 0 0 18px #111;
   overflow: hidden;
-  transition: transform 5s ease;
+  transition: transform 3s ease;
 }
 
 
@@ -67,7 +95,7 @@ body{
   position: absolute;
   width: 50%;
   height: 50%;
-  background: var(--clr);
+  background-color: var(--clr);
   transform-origin: bottom right;
   transform: rotate(calc(45deg * var(--i)));
   clip-path: polygon(0 0, 56% 0, 100% 100%, 0 56%);
@@ -75,19 +103,53 @@ body{
   justify-content: center;
   align-items: center;
   user-select: none;
+  text-shadow: 3px 5px  2px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.5s ease-in-out, text-shadow 0.25s ease-in-out;
 }
 
 .container .wheel .number span {
   position: relative;
   transform: rotate(45deg);
-  font-size: 1.25em;
+  font-size: 1rem;
   font-weight: 700;
   color: #fff;
-  text-shadow: 3px 5px  2px rgba(0, 0, 0, 0.15);
+  font-family: monospace;
+  overflow-wrap: break-word;
+  width: 50%;
+  
 }
 .container .wheel .number span::before {
    content: '';
    position: absolute;
-   font-size: 0.75em;
+   font-size: 0.75rem;
    font-weight: 500;
+}
+
+.new-num {
+  font-weight: 700;
+  font-family: monospace;
+}
+
+.flex-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  gap: 80px;
+}
+
+.flex-buttons > button {
+  width: 80px;
+  height: 30px;
+  font-size: 1rem;
+  margin: 4px;
+}
+
+.flex-buttons > button:hover {
+  color: white;
+  background-image: linear-gradient(to top, #2268eb, #2268eb, #b4c8ee);
+}
+
+.hidden {
+  opacity: 0%;
+  height: 60px;
 }

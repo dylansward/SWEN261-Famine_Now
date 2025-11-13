@@ -20,12 +20,14 @@ class UfundApiApplicationTests {
 		String name = "Balls";
 		float cost = 6.67f;
 		int quantity = 10;
+		String location = "New York";
 
-		Need n = new Need(id, name, cost, quantity);
+		Need n = new Need(id, name, cost, quantity, location);
 
 		assertEquals(name, n.getName());
 		assertEquals(id, n.getId());
 		assertEquals(cost, n.getCost());
 		assertEquals(quantity, n.getQuantity());
+		assertEquals(location, n.getLocation());
 	}
 }

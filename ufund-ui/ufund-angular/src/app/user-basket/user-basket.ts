@@ -33,8 +33,10 @@ export class UserBasket {
           this.backend.updateNeed(need).subscribe();
         }
       }
+      this.helper.spent(parseFloat(this.getBasketCost()));
       this.helper.clearBasket();
-      console.log("CHECKOUT!")
+      console.log("CHECKOUT!");
+      this.helper.refreshBasket();
     });
   }
 

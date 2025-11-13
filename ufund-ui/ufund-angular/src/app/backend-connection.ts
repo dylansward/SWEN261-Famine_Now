@@ -43,11 +43,11 @@ export class BackendConnection {
     return this.http.delete<Need>(url, this.httpOptions);
   }
 
-  searchNeeds(term: string): Observable<Need[]> {
-    if(!term.trim()) {
+  searchNeeds(term: string, term2: string): Observable<Need[]> {
+    if(!term.trim() && !term2.trim()) {
       return this.getNeeds();
     }
-    return this.http.get<Need[]>(`${this.needURL}/?name=${term}`);
+    return this.http.get<Need[]>(`${this.needURL}/?name=${term}&location=${term2}`);
   }
 
   getBaskets(): Observable<Basket[]> {

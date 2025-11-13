@@ -3,7 +3,7 @@ import { Need } from '../need';
 import { BackendConnection } from '../backend-connection';
 import { AppModule } from '../app-module';
 import { HelperBasket } from '../helper-basket';
-
+import { CssEquipper } from '../css-equipper';
 
 
 @Component({
@@ -18,12 +18,13 @@ export class Needs implements OnInit {
   curr_name: string = "";
   curr_cost: number = 0.0;
   curr_quantity: number = 0;
+  curr_location: string = "";
 
   new_name: string = "";
   new_cost: number = 0;
   new_quantity: number = 0;
 
-  constructor(private backend: BackendConnection, private helper: HelperBasket) { }
+  constructor(private backend: BackendConnection, private helper: HelperBasket, private css: CssEquipper) { }
 
   ngOnInit(): void {
     this.getNeeds();
@@ -42,8 +43,8 @@ export class Needs implements OnInit {
     });
   }
 
-  searchNeeds(input: string): void {
-    this.backend.searchNeeds(input).subscribe(needs => {
+  searchNeeds(input: string, input2: string): void {
+    this.backend.searchNeeds(input, input2).subscribe(needs => {
       this.needs = needs
       for (let need of this.needs) {
         if (this.needInBasket(need)){
@@ -76,6 +77,7 @@ export class Needs implements OnInit {
     this.curr_name = n.name;
     this.curr_cost = n.cost;
     this.curr_quantity = n.quantity;
+    this.curr_location = n.location;
   }
 
   updateEdit(n: Need): void {
@@ -87,6 +89,7 @@ export class Needs implements OnInit {
       name: this.curr_name,
       cost: parseFloat(this.curr_cost.toFixed(2)),
       quantity: parseInt(this.curr_quantity.toFixed(0)),
+      location: this.curr_location,
       current: false,
       current_quantity: 0,
     };
@@ -98,10 +101,11 @@ export class Needs implements OnInit {
     n.current = false;
   }
 
-  add(name_field: HTMLInputElement, cost_field: HTMLInputElement, quantity_field: HTMLInputElement): void {
+  add(name_field: HTMLInputElement, cost_field: HTMLInputElement, quantity_field: HTMLInputElement, location_field: HTMLInputElement): void {
     let name = name_field.value.trim();
     let cost = parseFloat(cost_field.value.trim());
     let quantity = parseInt(quantity_field.value.trim());
+    let location = location_field.value.trim();
     if (!name){
       return;
     }
@@ -114,6 +118,7 @@ export class Needs implements OnInit {
       name: name,
       cost: cost,
       quantity: quantity,
+      location: location,
       current: false,
       current_quantity: 0,
     };
@@ -171,6 +176,7 @@ export class Needs implements OnInit {
       name: need.name,
       cost: need.cost,
       quantity: need.current_quantity,
+      location: need.location,
       current: false,
       current_quantity: 0,
     };
@@ -188,6 +194,7 @@ export class Needs implements OnInit {
       name: need.name,
       cost: need.cost,
       quantity: need.current_quantity,
+      location: need.location,
       current: false,
       current_quantity: 0,
     };
@@ -200,7 +207,6 @@ export class Needs implements OnInit {
 
   displayNeed(n: Need): boolean {
     let temp = n.quantity > 0;
-    console.log(temp);
     return ((this.isAdmin() && !n.current) || (n.quantity > 0 && !this.isAdmin()));
   }
 }

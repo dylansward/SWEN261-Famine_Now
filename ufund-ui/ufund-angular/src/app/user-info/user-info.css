@@ -1,22 +1,14 @@
-button {
-    padding: 6px;
-    border: 2px;
-    border-radius: 4px;
-    font-size: 1rem;
-    color: black;
-    background-color: black;
-    margin: 2px;
-    font-family: monospace;
-    background-image: linear-gradient(to top, #d4d4d4, #d4d4d4, #e5e5e5);
-}
-
 span {
-    width: fit-content;
-    color: blue;
+  width: fit-content;
 }
 
 :host {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+p {
+  width: fit-content;
+  display: inline;
 }

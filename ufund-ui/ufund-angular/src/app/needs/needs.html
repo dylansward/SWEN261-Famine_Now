@@ -1,24 +1,27 @@
 <ul class="needs">
   <div *ngIf="isAdmin()">
     <form>
-    <div class="create-console">
+    <div class="create-console" class="need">
       <h2>Need Creator</h2>
       <p>Name: <input type="text" #name></p>
       <p>Cost: $<input type="number" #cost></p>
       <p>Quantity: <input type="number" #quantity></p>
+      <p>Location: <input type="text" #location></p>
     </div>
-    <button (click)="add(name, cost, quantity)" class="creation-button">Create Need</button>
+    <button (click)="add(name, cost, quantity, location)" class="creation-button">Create Need</button>
     </form>
   </div>
   <div>
-    <p>Search for Needs <input type="text" (input)="searchNeeds(search.value)" #search></p>
+    <p>Search for Needs <input type="text" (input)="searchNeeds(search.value, search_location.value)" #search></p>
+    <p>Search by Location <input type="text" (input)="searchNeeds(search.value, search_location.value)" #search_location></p>
   </div>
   <li *ngFor="let need of needs">
-      <div *ngIf="displayNeed(need)">
+      <div *ngIf="displayNeed(need)" class="need">
         <h3> {{need.id}} </h3>
         <h2> {{need.name}} </h2>
         <p> ${{need.cost.toFixed(2)}} </p>
         <p> {{need.quantity}} Remaining</p>
+        <p> Location: {{need.location}}</p>
         <div *ngIf="isAdmin()" class="buttons">
           <button (click)="startEdit(need)" class="creation-button">Edit</button>
           <button (click)="delete(need)" class="removal-button">Delete</button>
@@ -35,11 +38,12 @@
           </div>
         </div>
       </div>
-      <div *ngIf="need.current">
+      <div *ngIf="need.current" class="need">
         <h3> {{need.id}} </h3>
         <h2> Name: <input type="text" [(ngModel)]="curr_name" name="curr_name"></h2>
         <p> Cost: $<input type="number" [(ngModel)]="curr_cost" name="curr_cost"></p>
-        <p> Quanity: <input type="number" [(ngModel)]="curr_quantity" name="curr_quantity"></p>
+        <p> Quantity: <input type="number" [(ngModel)]="curr_quantity" name="curr_quantity"></p>
+        <p> Location: <input type="text" [(ngModel)]="curr_location" name="curr_location"></p>
         <div class="buttons">
           <button (click)="updateEdit(need)">Update</button>
           <button (click)="discardEdit(need)">Discard Changes</button>

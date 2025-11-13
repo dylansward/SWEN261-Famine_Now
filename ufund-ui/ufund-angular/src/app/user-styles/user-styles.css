@@ -1,0 +1,21 @@
+.styles {
+    margin: 10px;
+}
+
+body {
+    padding: 4px;
+}
+
+.flex_buttons {
+    display: flex;
+    flex-direction: row;
+    overflow: scroll;
+    width: calc(100vw - 20px);
+}
+
+.flex_buttons > button {
+    width: 300px;
+    max-width: 300px;
+    min-width: 300px;
+    margin: 4px;
+}

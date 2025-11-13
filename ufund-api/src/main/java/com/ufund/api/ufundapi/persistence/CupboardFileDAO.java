@@ -35,13 +35,14 @@ public class CupboardFileDAO implements NeedDAO {
     }
 
     private Need[] getNeedsArray() {
-        return getNeedsArray(null);
+        return getNeedsArray(null, null);
     }
 
-    private Need[] getNeedsArray(String containsText) {
+    private Need[] getNeedsArray(String containsText, String containsLocation) {
         ArrayList<Need> needArrayList = new ArrayList<>();
         for (Need need : needs.values()) {
-            if (containsText == null || need.getName().toLowerCase().contains(containsText)) {
+            if ((containsText == null || need.getName().toLowerCase().contains(containsText.toLowerCase())) &&
+                (containsLocation == null || need.getLocation().toLowerCase().contains(containsLocation.toLowerCase()))) {
                 needArrayList.add(need);
             }
         }
@@ -76,7 +77,7 @@ public class CupboardFileDAO implements NeedDAO {
     @Override
     public Need createNeed(Need need) throws IOException {
         synchronized(needs) {
-            Need newNeed = new Need(nextId(), need.getName(), need.getCost(), need.getQuantity());
+            Need newNeed = new Need(nextId(), need.getName(), need.getCost(), need.getQuantity(), need.getLocation());
             needs.put(newNeed.getId(), newNeed);
             save();
             return newNeed;
@@ -129,9 +130,9 @@ public class CupboardFileDAO implements NeedDAO {
     }
     
     @Override
-    public Need[] searchNeeds(String containsText) throws IOException {
+    public Need[] searchNeeds(String containsText, String containsLocation) throws IOException {
         synchronized(needs) {
-            return getNeedsArray(containsText.toLowerCase());
+            return getNeedsArray(containsText, containsLocation);
         }
     }
 }

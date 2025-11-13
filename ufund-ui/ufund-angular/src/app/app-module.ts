@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { UserInfo } from './user-info/user-info';
 import { UserBasket } from './user-basket/user-basket';
 import { Lootbox } from './lootbox/lootbox';
-
+import { UserStyles } from './user-styles/user-styles';
 
 
 @NgModule({
@@ -22,6 +22,7 @@ import { Lootbox } from './lootbox/lootbox';
     UserInfo,
     UserBasket,
     Lootbox,
+    UserStyles,
   ],
   imports: [
     BrowserModule,
