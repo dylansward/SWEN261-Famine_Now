@@ -18,8 +18,16 @@
   </div>
 </div>
 
-<div class="result">
-  <h2 class="need">
-  you got: <span class="new_num">{{selected}}</span>
-  </h2>
+<div class="result" #result>
+  <div class="need">
+  <h2>You got: <span class="new-num">{{selected}}</span> !</h2>
+  <div class="flex-buttons">
+    <button (click)="hideResults()">Okay</button>
+    <button (click)="quickEquip()">Equip</button>
+  </div>
+  </div>
+</div>
+
+<div class="hidden">
+  .
 </div>

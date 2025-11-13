@@ -60,7 +60,7 @@ export class HelperBasket {
           if (this.current_basket.spent === null || this.current_basket.spent === undefined) {
             this.current_basket.spent = 0;
           }
-          this.css.set_styles_user(this.current_basket)
+          this.css.set_styles_user(this.current_basket);
         }
       }
       this.refreshBasket();
@@ -76,9 +76,11 @@ export class HelperBasket {
       });
     } else {
       console.log("UPDATED BASKET");
+      console.log(this.current_basket as Basket)
       this.backend.updateBasket(this.current_basket as Basket).subscribe();
     }
     if (logout) {
+      console.log(this.current_basket);
       this.createNewBasket = false;
       this.current_basket = {
         id: -1,
@@ -178,6 +180,15 @@ export class HelperBasket {
 
   getSpins(): number {
     return Math.floor(this.current_basket.spent/10);
+  }
+
+  spend10(): void {
+    this.current_basket.spent -= 10.0
+    this.refreshBasket();
+  }
+
+  spent(n: number): void {
+    this.current_basket.spent += n;
   }
 }
 

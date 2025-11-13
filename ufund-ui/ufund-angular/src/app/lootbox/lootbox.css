@@ -17,7 +17,8 @@ body{
   justify-content: center;
   align-items: center;
   margin: auto;
-  margin-top: 80px;
+  margin-top: 60px;
+  overflow: visible;
 }
 
 .need {
@@ -30,9 +31,20 @@ body{
 }
 
 .result {
+  position: absolute;
   align-items: center;
-  margin-top: 50px;
   text-align: center;
+  opacity: 0%;
+  display: none;
+  top: 440px;
+  left: 5vw;
+  z-index: 20;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.result > .need {
+  width: 90vw;
+  height: 100px;
 }
 
 .container .spinBtn{
@@ -113,7 +125,31 @@ body{
    font-weight: 500;
 }
 
-.new_num {
+.new-num {
   font-weight: 700;
   font-family: monospace;
+}
+
+.flex-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  gap: 80px;
+}
+
+.flex-buttons > button {
+  width: 80px;
+  height: 30px;
+  font-size: 1rem;
+  margin: 4px;
+}
+
+.flex-buttons > button:hover {
+  color: white;
+  background-image: linear-gradient(to top, #2268eb, #2268eb, #b4c8ee);
+}
+
+.hidden {
+  opacity: 0%;
+  height: 60px;
 }

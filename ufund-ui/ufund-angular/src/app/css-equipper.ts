@@ -54,6 +54,8 @@ export class CssEquipper {
   }
 
   set_styles_user(user: Basket): void {
+    console.log(user.sel_input);
+    console.log(user.sel_button);
     this.set_background(user.sel_background);
     this.set_header(user.sel_header);
     this.set_subheader(user.sel_subheader);
@@ -95,7 +97,7 @@ export class CssEquipper {
         break;
       case "background-black":
         this.doc_style.setProperty('--bg-color', 'linear-gradient(#282828)');
-        this.doc_style.setProperty('--header-bg-color', 'black');
+        this.doc_style.setProperty('--header-bg-color', '#282828');
         this.doc_style.setProperty('--need-color', 'black');
         break;
       
@@ -108,7 +110,6 @@ export class CssEquipper {
   }
 
   set_header(header: string): void {
-    console.log(header);
     switch (header) {
       case "header-default":
         this.doc_style.setProperty('--header-color', '#000000');
@@ -208,8 +209,8 @@ export class CssEquipper {
     }
   }
 
-  set_button(input: string): void {
-    switch (input) {
+  set_button(button: string): void {
+    switch (button) {
       case "button-default":
         this.doc_style.setProperty('--button-color', 'linear-gradient(#d4d4d4)');
         this.doc_style.setProperty('--button-rounded', '5px');

@@ -51,7 +51,7 @@ public class Basket {
         this.sel_header = sel_header;
         this.sel_subheader = sel_subheader;
         this.sel_text = sel_text;
-        this.sel_input = sel_button;
+        this.sel_input = sel_input;
         this.sel_button = sel_button;
     }
 
