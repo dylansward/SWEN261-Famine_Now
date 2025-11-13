@@ -22,7 +22,7 @@ import com.ufund.api.ufundapi.model.Need;
 import java.io.File;
 import java.io.IOException;
 
-/*@Tag("Persistence-tier")
+@Tag("Persistence-tier")
 public class BasketsFileDAOTest {
     BasketsFileDAO bfdao;
     Basket[] testBaskets;
@@ -33,9 +33,9 @@ public class BasketsFileDAOTest {
         mockObjectMapper = mock(ObjectMapper.class);
 
         testBaskets = new Basket[3];
-        testBaskets[0] = new Basket(0, "Albin", new Need[] {new Need(0, "Taco", 9.99, 3), new Need(1, "Chips", 3.99, 1), new Need(2, "Salsa", 1.99, 1), new Need(3, "Soda", 4.99, 1)});
-        testBaskets[1] = new Basket(1, "Albin Jr", null);
-        testBaskets[2] = new Basket(2, "Albin III", new Need[] {new Need(0, "Taco", 11.99, 5), new Need(4, "Water", 1.99, 1)});
+        testBaskets[0] = new Basket(0, "Albin", 100, new Need[] {new Need(0, "Taco", 9.99, 3, "Here"), new Need(1, "Chips", 3.99, 1, "Here"), new Need(2, "Salsa", 1.99, 1, "Here"), new Need(3, "Soda", 4.99, 1, "Here")}, new String[] {"default"}, "default", "default", "default", "default", "default", "default");
+        testBaskets[1] = new Basket(1, "Albin Jr", 10, null, null, null, null, null, null, null, null);
+        testBaskets[2] = new Basket(2, "Albin III", 0, new Need[] {new Need(0, "Taco", 11.99, 5, "Here"), new Need(4, "Water", 1.99, 1, "Here")}, new String[] {"default", "not default"}, "not default", "not default", "not default", "not default", "not default", "not default");
 
         when(mockObjectMapper.readValue(new File("ex.file"), Basket[].class)).thenReturn(testBaskets);
         bfdao = new BasketsFileDAO("ex.file", mockObjectMapper);
@@ -107,7 +107,7 @@ public class BasketsFileDAOTest {
         int count = 0;
         try {
             for(int i = 0; i < testBaskets.length; i++) {
-                Basket newBasket = new Basket(testBaskets[i].getId(), testBaskets[i].getUser(), null);
+                Basket newBasket = new Basket(testBaskets[i].getId(), testBaskets[i].getUser(), testBaskets[i].getSpent(), null, null, null, null, null, null, null, null);
                 Basket actualBasket = bfdao.updateBasket(newBasket);
                 assertEquals(newBasket.getUser(), actualBasket.getUser(), "Failed on testBasket[" + i + "]");
                 assertNull((Object) actualBasket.getContents(), "Failed on testBasket[" + i + "]");
@@ -132,4 +132,3 @@ public class BasketsFileDAOTest {
         }
     }
 }
-*/

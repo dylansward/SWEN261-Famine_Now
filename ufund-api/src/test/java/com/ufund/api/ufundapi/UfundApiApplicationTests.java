@@ -29,5 +29,12 @@ class UfundApiApplicationTests {
 		assertEquals(cost, n.getCost());
 		assertEquals(quantity, n.getQuantity());
 		assertEquals(location, n.getLocation());
+
+		n.setCost(++cost);
+		n.setQuantity(--quantity);
+		n.setLocation("Rochester, New York");
+		assertEquals(cost, n.getCost());
+		assertEquals(quantity, n.getQuantity());
+		assertEquals("Rochester, New York", n.getLocation());
 	}
 }

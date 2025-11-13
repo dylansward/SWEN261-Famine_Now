@@ -206,7 +206,7 @@ The model tier contains the structure for the Baskets and Needs, which also prov
 > have not had any testing yet. Highlight the issues found during
 > acceptance testing and if there are any concerns._
 
-Passed: 10;
+Passed: 19;
 Failed: 0;
 Untested: 0
 
@@ -219,10 +219,14 @@ Issues: None
 > code coverage met your targets._
 
 ![](DesignDocAssets/Sprint2Coverage.png)
+*Coverage Report from Sprint 2*
 
-The low coverage for the controller tier can be attributed to missing tests for non-existant needs and baskets. These tests will be added in later sprints.
+![](DesignDocAssets/Sprint3Coverage.png)
+*Coverage Report from Sprint 3*
 
->_**[Sprint 3 & 4]** **Include images of your code coverage report.** If there are any anomalies, discuss
+The low coverage for the controller tier can be attributed to missing tests for when the backend encounters IOExceptions while handling HTTP requests. Most of these exceptions would rarely arise, however, as the issues that cause them also result in errors during earlier parts of the program. As such, these checks are redundant, and testing them was deemed low priority (especially since adding this to the test for UpdateNeeds of the CupboardController took two hours).
+
+>_**[Sprint 4]** **Include images of your code coverage report.** If there are any anomalies, discuss
 > those._
 
 ## Ongoing Rationale

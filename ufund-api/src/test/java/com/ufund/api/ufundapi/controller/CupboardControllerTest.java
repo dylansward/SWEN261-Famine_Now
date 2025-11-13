@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.doThrow;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,32 +23,38 @@ import com.ufund.api.ufundapi.persistence.BasketsFileDAO;
 import com.ufund.api.ufundapi.persistence.CupboardFileDAO;
 import com.ufund.api.ufundapi.persistence.NeedDAO;
 
-/*@Tag("Controller-tier")
+@Tag("Controller-tier")
 public class CupboardControllerTest {
-    NeedDAO dao;
-    CupboardController controller;
-    ObjectMapper mockObjectMapper;
+    NeedDAO dao, edao;
+    CupboardController controller, econtroller;
+    ObjectMapper mockObjectMapper, emockObjectMapper;
     Need[] testNeeds;
 
 
     @BeforeEach
     public void setupCupboardController() throws IOException {
         mockObjectMapper = mock(ObjectMapper.class);
+        emockObjectMapper = mock(ObjectMapper.class);
 
         testNeeds = new Need[4];
-        testNeeds[0] = new Need(0, "Need 1", 10, 3);
-        testNeeds[1] = new Need(1, "Another Need", 4, 1);
-        testNeeds[2] = new Need(2, "Testing sure is fun", 5, 2);
-        testNeeds[3] = new Need(3, "Thing 4", 2, 1);
+        testNeeds[0] = new Need(0, "Need 1", 10, 3, "Here");
+        testNeeds[1] = new Need(1, "Another Need", 4, 1, "Right here");
+        testNeeds[2] = new Need(2, "Testing sure is fun", 5, 2, "Exactly here");
+        testNeeds[3] = new Need(3, "Thing 4", 2, 1, "Idk maybe here can't confirm though");
 
         when(mockObjectMapper.readValue(new File(""), Need[].class)).thenReturn(testNeeds);
         dao = new CupboardFileDAO("", mockObjectMapper);
         controller = new CupboardController(dao);
+
+        when(emockObjectMapper.readValue(new File(""), Need[].class)).thenReturn(testNeeds);
+        doThrow(new IOException()).when(emockObjectMapper).writeValue(new File(""), testNeeds);
+        edao = new CupboardFileDAO("", emockObjectMapper);
+        econtroller = new CupboardController(edao);
     }
 
     @Test
     public void testCreateNeed() {
-        Need test = new Need(4, "Created Need", 1, 1);
+        Need test = new Need(4, "Created Need", 1, 1, "Over there");
         ResponseEntity<Need> result = controller.createNeed(test);
         
         assertEquals(HttpStatus.CREATED, result.getStatusCode());
@@ -104,7 +111,7 @@ public class CupboardControllerTest {
 
     @Test
     public void testSearchNeeds() {
-        ResponseEntity<Need[]> result = controller.searchNeeds("Need");
+        ResponseEntity<Need[]> result = controller.searchNeeds("Need", null);
 
         assertEquals(HttpStatus.OK, result.getStatusCode());
         for (int i = 0; i < 2; i++) {
@@ -114,7 +121,7 @@ public class CupboardControllerTest {
             assertEquals(testNeeds[i].getQuantity(), result.getBody()[i].getQuantity());
         }
 
-        result = controller.searchNeeds("Thing");
+        result = controller.searchNeeds("Thing", null);
 
         assertEquals(HttpStatus.OK, result.getStatusCode());
         assertEquals(testNeeds[3].getId(), result.getBody()[0].getId());
@@ -122,10 +129,15 @@ public class CupboardControllerTest {
         assertEquals(testNeeds[3].getCost(), result.getBody()[0].getCost());
         assertEquals(testNeeds[3].getQuantity(), result.getBody()[0].getQuantity());
 
-        result = controller.searchNeeds("abcdefghijklmnopqrstuvwxyz");
+        result = controller.searchNeeds("abcdefghijklmnopqrstuvwxyz", null);
 
         assertEquals(HttpStatus.OK, result.getStatusCode());
         assertEquals(0, result.getBody().length);
+
+        result = controller.searchNeeds(null, "here");
+
+        assertEquals(HttpStatus.OK, result.getStatusCode());
+        assertEquals(testNeeds.length, result.getBody().length);
     }
 
     @Test
@@ -139,5 +151,8 @@ public class CupboardControllerTest {
         assertEquals(test.getName(), result.getBody().getName());
         assertEquals(test.getCost(), result.getBody().getCost());
         assertEquals(test.getQuantity(), result.getBody().getQuantity());
+
+        ResponseEntity<Need> eres = econtroller.updateNeed(test);
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, eres.getStatusCode());
     }
-}*/
+}
