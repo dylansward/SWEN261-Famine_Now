@@ -150,7 +150,7 @@ The ViewModel Tier includes the following classes:
 ### Model Tier
 
 The Model Tier includes the following classes:
-- Basket: Defines the structure of user baskets that are stored by the server.
+- Basket: Defines the structure of user baskets that are stored by the server. Since each basket is tied to a particular user, these objects will also store the user-owned page styles and the particular ones that they have selected.
 - BasketsDAO (interface)
 - BasketsFileDAO: Provides implementation for the BasketsDAO functions in order to save, retrieve, update, and delete user baskets stored on the server.
 - Need: Defines the structure of the famine needs that are stored by the server.
@@ -159,7 +159,7 @@ The Model Tier includes the following classes:
 
 The model tier contains the structure for the Baskets and Needs, which also provides the JSON structure for those objects as they appear in the server. Additionally, this tier contains the FileDAOs, which contain the functions that execute CRUD commands onto the server. The BasketsFileDAO works with the JSON data for Baskets, while the CupboardFileDAO works with the data for Needs.
 
-> _**[Sprint 3 & 4]** Provide a summary of this tier of your architecture. This
+> _**[Sprint 4]** Provide a summary of this tier of your architecture. This
 > section will follow the same instructions that are given for the View
 > Tier above._
 
@@ -174,12 +174,18 @@ The model tier contains the structure for the Baskets and Needs, which also prov
 ![](DesignDocAssets/Controller-OO-Principle.png)
 
 2. Our product follows the **Single Responsibility** principle, which states that classes should only have one responsibility. It does this by splitting the four main responsibilities--processing HTTP requests and modifying data in the server for both the cupboard and the user baskets--into four different classes. By doing this, each of these classes only has one responsibility, and they are, in turn, simpler to understand.
-<!-- Dependency injection/inversion -->
+
+3. Both our website and backend follow the **Dependency Injection/Inversion** principle, in which low level objects do not instantiate dependent objects and are instead given (or injected) them from higher modules. In the website, BackendConnection and HelperBasket are services that get injected into the different pages in order to handle persistent data and communication with the backend. Meanwhile, in the backend, CupboardController and BasketsController, which receive and respond to HTTP requests, are given CupboardFileDAO and BasketsFileDAO, respectively, when created in order to properly handle these requests. As a result of this practice, we are able to increase the coverage of our unit tests by making and injecting expansive mock objects, rather than being forced to just test with real, yet narrow-focused, ones.
+
+<!-- Open/Closed -->
 <!-- OO principle 4 -->
 
-> _**[Sprint 3 & 4]** Will eventually address upto **4 key OO Principles** in your final design. Follow guidance in augmenting those completed in previous Sprints as indicated to you by instructor. Be sure to include any diagrams (or clearly refer to ones elsewhere in your Tier sections above) to support your claims._
 
-> _**[Sprint 3 & 4]** OO Design Principles should span across **all tiers.**_
+
+> _**[Sprint 4]** Will eventually address upto **4 key OO Principles** in your final design. Follow guidance in augmenting those completed in previous Sprints as indicated to you by instructor. Be sure to include any diagrams (or clearly refer to ones elsewhere in your Tier sections above) to support your claims._
+
+> _**[Sprint 4]** OO Design Principles should span across **all tiers.**_
+
 
 ## Static Code Analysis/Future Design Improvements
 > _**[Sprint 4]** With the results from the Static Code Analysis exercise, 
@@ -220,4 +226,4 @@ The low coverage for the controller tier can be attributed to missing tests for 
 > those._
 
 ## Ongoing Rationale
->_**[Sprint 3 & 4]** Throughout the project, provide a time stamp **(yyyy/mm/dd): Sprint # and description** of any _**mayor**_ team decisions or design milestones/changes and corresponding justification._
+>_**[Sprint 4]** Throughout the project, provide a time stamp **(yyyy/mm/dd): Sprint # and description** of any _**mayor**_ team decisions or design milestones/changes and corresponding justification._
