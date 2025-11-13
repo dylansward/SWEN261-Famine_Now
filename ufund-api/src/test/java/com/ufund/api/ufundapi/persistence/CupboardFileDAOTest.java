@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Tag;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -17,7 +18,8 @@ import com.ufund.api.ufundapi.model.Need;
 import java.io.File;
 import java.io.IOException;
 
-/*public class CupboardFileDAOTest {
+@Tag("Persistence-tier")
+public class CupboardFileDAOTest {
     CupboardFileDAO cfdao;
     Need[] testNeeds;
     ObjectMapper mockObjectMapper;
@@ -27,9 +29,9 @@ import java.io.IOException;
         mockObjectMapper = mock(ObjectMapper.class);
         
         testNeeds = new Need[3];
-        testNeeds[0] = new Need(0, "Taco", 5.99, 10);
-        testNeeds[1] = new Need(1, "Burrito", 8.99, 5);
-        testNeeds[2] = new Need(2, "Quesadilla", 6.99, 8);
+        testNeeds[0] = new Need(0, "Taco", 5.99, 10, "There");
+        testNeeds[1] = new Need(1, "Burrito", 8.99, 5, "Here");
+        testNeeds[2] = new Need(2, "Quesadilla", 6.99, 8, "Everywhere");
         when(mockObjectMapper.readValue(new File("ex.file"), Need[].class)).thenReturn(testNeeds);
         cfdao = new CupboardFileDAO("ex.file", mockObjectMapper);
     }
@@ -80,10 +82,10 @@ import java.io.IOException;
     @Test
     public void testUpdateNeeds() {
         try {
-            Need newNeed = new Need(0, "Pizza", 12.99, 1);
+            Need newNeed = new Need(0, "Pizza", 12.99, 1, "Nowhere");
             Need actualNeed = cfdao.updateNeed(newNeed);
             assertEquals(newNeed, actualNeed);
-            newNeed = new Need(4, "Pizza", 12.99, 1);
+            newNeed = new Need(4, "Pizza", 12.99, 1, "Nowhere");
             actualNeed = cfdao.updateNeed(newNeed);
             assertNull(cfdao.getNeed(4));
         }
@@ -106,12 +108,15 @@ import java.io.IOException;
     public void testSearchNeeds() {
         try {
             Need[] testSearchNeeds = {testNeeds[0]};
-            Need[] actualNeeds = cfdao.searchNeeds("Taco");
+            Need[] actualNeeds = cfdao.searchNeeds("Taco", null);
+            Need[] actualNeeds2 = cfdao.searchNeeds(null, "t");
+            Need[] actualNeeds3 = cfdao.searchNeeds("Taco", "t");
             assertArrayEquals(testSearchNeeds, actualNeeds);
+            assertArrayEquals(testSearchNeeds, actualNeeds2);
+            assertArrayEquals(testSearchNeeds, actualNeeds3);
         }
         catch(Exception e) {
             fail(e.getMessage());
         }
     }
 }
-*/
