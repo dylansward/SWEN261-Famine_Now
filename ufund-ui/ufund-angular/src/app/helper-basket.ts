@@ -27,6 +27,11 @@ export class HelperBasket {
   createNewBasket: boolean = false;
   constructor(private backend: BackendConnection, private css: CssEquipper) { }
   
+  addStyle(style: string) {
+    this.current_basket.styles.push(style);
+    this.refreshBasket();
+  }
+
   setupBasket(username: string) {
     this.backend.getBaskets().subscribe(baskets => {
       this.baskets = baskets

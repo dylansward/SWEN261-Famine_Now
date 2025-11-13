@@ -29,7 +29,7 @@ export class Lootbox implements AfterViewInit {
     this.setWheel();
   }
     async spinButton() {
-    const value = Math.ceil(Math.random() * 3600);
+    const value = Math.ceil(Math.random() * 3600) + 720;
     this.wheel.nativeElement.style.transform = `rotate(${value}deg)`;
     this.spin_button.nativeElement.style.pointerEvents = 'none';
     this.spin_button.nativeElement.style.pointer = 'none';
@@ -42,7 +42,9 @@ export class Lootbox implements AfterViewInit {
     console.log("Result:", result);
     await this.delay(3000);
     this.selected = this.results[index];
+    this.helper.addStyle(this.selected);
     await this.delay(1000);
+    this.setWheel();
     this.spin_button.nativeElement.style.pointerEvents = 'all';
     this.spin_button.nativeElement.style.pointer = 'all';
   }
