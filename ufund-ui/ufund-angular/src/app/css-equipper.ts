@@ -14,6 +14,31 @@ export class CssEquipper {
   ]
   private doc_style = document.documentElement.style
   
+  randomRange(min: number, max: number): number {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
+  }
+
+  getRandomResults(cant_take: string[]): string[] {
+    let styles: string[] = this.all_styles.filter(s => !cant_take.includes(s));
+    let rand_8: string[] = [];
+    if (styles.length > 0){
+      while (styles.length < 8) {
+        styles = styles.concat(styles);
+      }
+      while (rand_8.length < 8) {
+        let temp = this.randomRange(0, styles.length);
+        rand_8.push(styles[temp]);
+        styles.slice(temp, 1);
+      }
+
+    } else {
+      return ["background-default", "background-default", "background-default", "background-default", "background-default", "background-default", "background-default", "background-default"];
+    }
+    return rand_8;
+  }
+
   getAll(): string[] {
     return this.all_styles;
   }

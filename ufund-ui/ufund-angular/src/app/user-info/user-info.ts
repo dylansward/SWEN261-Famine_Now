@@ -37,7 +37,7 @@ export class UserInfo {
     AppModule.user_status = 0;
   }
   LootBoxVisible() :boolean{
-    if (AppModule.user_status == 1){
+    if (this.isUser()){
       return true;
     }
     else{
