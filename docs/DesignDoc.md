@@ -175,8 +175,9 @@ The model tier contains the structure for the Baskets and Needs, which also prov
 
 2. Our product follows the **Single Responsibility** principle, which states that classes should only have one responsibility. It does this by splitting the four main responsibilities--processing HTTP requests and modifying data in the server for both the cupboard and the user baskets--into four different classes. By doing this, each of these classes only has one responsibility, and they are, in turn, simpler to understand.
 
-3. Our website goes along with the **Open/Closed** principle, which states that objects or entities should be open for extension but closed for modification. An example of this in our project is app.ts and app.html not being modified but rather extended into different pages.
-<!-- Dependency injection/inversion -->
+3. Both our website and backend follow the **Dependency Injection/Inversion** principle, in which low level objects do not instantiate dependent objects and are instead given (or injected) them from higher modules. In the website, BackendConnection and HelperBasket are services that get injected into the different pages in order to handle persistent data and communication with the backend. Meanwhile, in the backend, CupboardController and BasketsController, which receive and respond to HTTP requests, are given CupboardFileDAO and BasketsFileDAO, respectively, when created in order to properly handle these requests. As a result of this practice, we are able to increase the coverage of our unit tests by making and injecting expansive mock objects, rather than being forced to just test with real, yet narrow-focused, ones.
+
+<!-- Open/Closed -->
 <!-- OO principle 4 -->
 
 
