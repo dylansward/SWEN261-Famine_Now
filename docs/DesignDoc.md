@@ -222,12 +222,10 @@ Issues: None
 *Coverage Report from Sprint 2*
 
 ![](DesignDocAssets/Sprint3Coverage.png)
-*Coverage Report from Sprint 3*
+*Coverage Report from Sprint 3 and 4*
 
 The low coverage for the controller tier can be attributed to missing tests for when the backend encounters IOExceptions while handling HTTP requests. Most of these exceptions would rarely arise, however, as the issues that cause them also result in errors during earlier parts of the program. As such, these checks are redundant, and testing them was deemed low priority (especially since adding this to the test for UpdateNeeds of the CupboardController took two hours).
 
->_**[Sprint 4]** **Include images of your code coverage report.** If there are any anomalies, discuss
-> those._
-
 ## Ongoing Rationale
->_**[Sprint 4]** Throughout the project, provide a time stamp **(yyyy/mm/dd): Sprint # and description** of any _**mayor**_ team decisions or design milestones/changes and corresponding justification._
+
+**(2025/11/18) Sprint 4 Rationales:** We have decided that we are content with having no other major decisions, and that this section will be left otherwise blank
