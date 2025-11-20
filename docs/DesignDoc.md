@@ -177,6 +177,15 @@ Typescript services:
 - css-equipper.ts: Handles all logic for changing the variables in styles.css based on selected styles in the user's basket.
 - helper-basket.ts: Contains a copy of the current user's basket, used among most of the typescript components that affect a basket. Calls the backend-connection when a relevant update to the basket is made.
 
+> _**[Sprint 4]** Provide a summary of this tier of your architecture. This
+> section will follow the same instructions that are given for the View
+> Tier above._
+
+> _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
+> static models (UML class diagrams) with some details such as associations (connections) between classes, and critical attributes and methods. (**Be sure** to revisit the Static **UML Review Sheet** to ensure your class diagrams are using correct format and syntax.)_
+> 
+![Replace with your ViewModel Tier class diagram 1, etc.](model-placeholder.png)
+
 ### Model Tier
 
 The Model Tier includes the following classes:
@@ -188,6 +197,15 @@ The Model Tier includes the following classes:
 - CupboardFileDAO: Provides implementation for the NeedDAO functions in order to save, retrieve, update, and delete famine efforts stored on the server.
 
 The model tier contains the structure for the Baskets and Needs, which also provides the JSON structure for those objects as they appear in the server. Additionally, this tier contains the FileDAOs, which contain the functions that execute CRUD commands onto the server. The BasketsFileDAO works with the JSON data for Baskets, while the CupboardFileDAO works with the data for Needs.
+
+> _**[Sprint 4]** Provide a summary of this tier of your architecture. This
+> section will follow the same instructions that are given for the View
+> Tier above._
+
+> _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
+> static models (UML class diagrams) with some details such as associations (connections) between classes, and critical attributes and methods. (**Be sure** to revisit the Static **UML Review Sheet** to ensure your class diagrams are using correct format and syntax.)_
+> 
+![Replace with your Model Tier class diagram 1, etc.](model-placeholder.png)
 
 ## OO Design Principles
 
