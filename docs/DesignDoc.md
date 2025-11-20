@@ -142,6 +142,22 @@ As recommendations for the future, we could better format the navigation bar. Fo
 Another recommendation is that the helper should be able to edit their basket from the basket page, instead of having to go back to the home page and do that there.
 
 ### View Tier
+The view tier of our application includes all of the component HTML and CSS with each angular component. This includes the components:
+- login-page
+- lootbox (internal name for the wheel)
+- needs
+- user-basket (internal name for the checkout page)
+- user-info
+- user-styles
+
+And of the non-components:
+- app.html
+- styles.css
+
+Each of the component views is responsible for the different pages that a user (mostly for the helpers) can be on in our application. Of course app.html simply includes router links, a button to get to the needs page (as that is the same regardless of log-in status) and the website's header. The most significant part of our view tier is the main styles.css file, which contains all of the css variables and where they are applied based upon the selections a user can make.
+
+![](DesignDocAssets/S4/SWENlogin.svg)
+![](DesignDocAssets/S4/SWENcheckout.svg)
 > _**[Sprint 4]** Provide a summary of the View Tier UI of your architecture.
 > Describe the types of components in the tier and describe their
 > responsibilities.  This should be a narrative description, i.e. it has
@@ -164,6 +180,18 @@ Another recommendation is that the helper should be able to edit their basket fr
 The ViewModel Tier includes the following classes:
 - BasketsController: Receives and processes all "\baskets" HTTP requests.
 - CupboardController: Receives and processes all "\cupboard" HTTP requests.
+
+Typescript components:
+- login-page.ts: Handles logging-in logic.
+- lootbox.ts: Handles all logic pertaining to the wheel  and bestowing new styles onto a user.
+- needs.ts: Handles all logic with displaying the cupboard and allowing needs to be added into a users cart, as well as allowing an admin to create, edit, and delete needs.
+- user-basket.ts: Contains all logic for checking out a user's basket.
+- user-info.ts: Contains all the relevant info for a user to display in the top right of the page (buttons).
+
+Typescript services:
+- backend-connection.ts: Connects to the SPRING server and enacts all HTTP requests from the typescript components.
+- css-equipper.ts: Handles all logic for changing the variables in styles.css based on selected styles in the user's basket.
+- helper-basket.ts: Contains a copy of the current user's basket, used among most of the typescript components that affect a basket. Calls the backend-connection when a relevant update to the basket is made.
 
 > _**[Sprint 4]** Provide a summary of this tier of your architecture. This
 > section will follow the same instructions that are given for the View
