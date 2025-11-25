@@ -20,7 +20,7 @@ geometry: margin=1in
 
 ## Executive Summary
 
-This is a summary of the project.
+The project outlined in this document is a web-based platform that provides users with a live list of global famine resolution efforts, of which they can to contribute to specific needs by searching by different data, saving those to their personal baskets, and checking-out said baskets as a final confirmation.
 
 ### Purpose
 
@@ -30,7 +30,10 @@ The project is a website that users can go to and give donations to resolution e
 
 | Term | Definition |
 |------|------------|
-| SPA | Single Page |
+| Need | A famine resolution effort that helpers can contribute to by giving donations through the website |
+| User | Anyone who uses the website, whether they are logged in or not |
+| Admin | A specific user role that requires logging into the reserved "admin" account. These users can add, update, and delete needs to ensure the website conveys accurate information |
+| Helper | A specific user role that requires logging into personal accounts. These users can search for needs, add them to their personal baskets, and checkout those baskets once ready to contribute to particular needs. |
 
 ## Requirements
 
@@ -85,15 +88,15 @@ This section describes the application architecture.
 The following Tiers/Layers model shows a high-level view of the webapp's architecture. 
 **NOTE**: detailed diagrams are required in later sections of this document.
 
-![The Tiers & Layers of the Architecture](DesignDocAssets/architecture-tiers-and-layers.png)
+![The Tiers & Layers of the Architecture](DesignDocAssets/architecture.png)
 
 The web application, is built using the Model–View–ViewModel (MVVM) architecture pattern. 
 
 The Model stores the application data objects including any functionality to provide persistance. 
 
-The View is the client-side SPA built with Angular utilizing HTML, CSS and TypeScript. The ViewModel provides RESTful APIs to the client (View) as well as any logic required to manipulate the data objects from the Model.
+The View is the client-side website built with Angular utilizing HTML, CSS and TypeScript. The ViewModel provides and uses RESTful APIs so that the client (View) may interact with and manipulate the data objects in the Model.
 
-Both the ViewModel and Model are built using Java and Spring Framework. Details of the components within these tiers are supplied below.
+Both the ViewModel and Model in the API are built using Java and Spring Framework. Details of the components within these tiers are supplied below.
 
 
 ### Overview of User Interface
@@ -104,17 +107,19 @@ This section describes the web interface and flow; this is how the user views an
 
 The following is a sketch of our plan for the helper page, where helpers, once logged in, will be able to move needs between the cupboard and their basket. They can also search for needs with a search bar, or logout if they want to leave. Once they are ready, there will also be a checkout button so that they can finalize their contributions. 
 
-![Replace with your First concept of a layout for a mayor page in the User Interface](DesignDocAssets/Sprint1UIDraft.png)
+![](DesignDocAssets/Sprint1UIDraft.png)
 
-#### Flow of Application's UI
+#### Initial Draft of Application's UI Flow
 
-<!--The application's UI will feature a home page that initially shows users a list of ongoing famine efforts. This page will also direct them to a sign-in page, where they can enter their username and password in order to log into their accounts. From here, the admin will see a master page where they can add, remove, and edit needs, while the helpers will see their basket and a list of needs, which they are able to move specific things between. From these pages, all users will have the ability to logout with a logout button near where the original login button was. Additionally, each page will have a button to take the user back to their primary screen (determined by what account they are signed in as).
+The application's UI will feature a home page that initially shows users a list of ongoing famine efforts. This page will also direct them to a sign-in page, where they can enter their username and password in order to log into their accounts. From here, the admin will see a master page where they can add, remove, and edit needs, while the helpers will see their basket and a list of needs, which they are able to move specific things between. From these pages, all users will have the ability to logout with a logout button near where the original login button was. Additionally, each page will have a button to take the user back to their primary screen (determined by what account they are signed in as).
 
 The following are sketches of the Login and Admin pages. The above image, which is a sketch of the Helper page, also represents a part of the UI.
 
 ![](DesignDocAssets/Sprint2LoginSketch.jpg)
 
-![](DesignDocAssets/Sprint2AdminSketch.jpg)-->
+![](DesignDocAssets/Sprint2AdminSketch.jpg)
+
+#### Flow of the Application's Current UI
 
 The user starts on the home page of the website, where they are able to see and search for all the famine efforts, but are not able to edit them or add them to a basket. 
 ![](DesignDocAssets/S4/GenericHome.png)
@@ -161,30 +166,27 @@ Each of the component views is responsible for the different pages that a user (
 
 ### ViewModel Tier
 
-The ViewModel Tier includes the following classes:
+In the API, the ViewModel Tier includes the following classes:
 - BasketsController: Receives and processes all "\baskets" HTTP requests.
 - CupboardController: Receives and processes all "\cupboard" HTTP requests.
 
-Typescript components:
+Meanwhile, in the UI, the ViewModel Tier includes the following Typescript components:
 - login-page.ts: Handles logging-in logic.
-- lootbox.ts: Handles all logic pertaining to the wheel  and bestowing new styles onto a user.
+- lootbox.ts: Handles all logic pertaining to the wheel and bestowing new styles onto a user.
 - needs.ts: Handles all logic with displaying the cupboard and allowing needs to be added into a users cart, as well as allowing an admin to create, edit, and delete needs.
 - user-basket.ts: Contains all logic for checking out a user's basket.
 - user-info.ts: Contains all the relevant info for a user to display in the top right of the page (buttons).
 
-Typescript services:
+Additionally, the ViewModel Tier in the UI also consists of the following Typescript services:
 - backend-connection.ts: Connects to the SPRING server and enacts all HTTP requests from the typescript components.
 - css-equipper.ts: Handles all logic for changing the variables in styles.css based on selected styles in the user's basket.
 - helper-basket.ts: Contains a copy of the current user's basket, used among most of the typescript components that affect a basket. Calls the backend-connection when a relevant update to the basket is made.
 
-> _**[Sprint 4]** Provide a summary of this tier of your architecture. This
-> section will follow the same instructions that are given for the View
-> Tier above._
+The ViewModel tier is responsible for communication between the UI (View) and the API (Model). It is the central component for data persistence, as it allows user actions in the UI to manipulate data in the backend, as well as enabling data in the backend to be properly reflected in the UI.
 
-> _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
-> static models (UML class diagrams) with some details such as associations (connections) between classes, and critical attributes and methods. (**Be sure** to revisit the Static **UML Review Sheet** to ensure your class diagrams are using correct format and syntax.)_
-> 
-![Replace with your ViewModel Tier class diagram 1, etc.](model-placeholder.png)
+In the UI, the Angular service BackendConnection sends HTTP requests to alter or access data in the backend. It then receives the responses sent by the API, and gives the information in the response to the component or service that handles the logic for that particular data.
+
+In the API, the BasketsController and CupboardController classes receive HTTP requests, calling the necessary functions in order to process it. Once it updates the backend--or encounters an error that prevents it from doing so--it sends a response back with the related data and an HTTP status code.
 
 ### Model Tier
 
@@ -197,15 +199,6 @@ The Model Tier includes the following classes:
 - CupboardFileDAO: Provides implementation for the NeedDAO functions in order to save, retrieve, update, and delete famine efforts stored on the server.
 
 The model tier contains the structure for the Baskets and Needs, which also provides the JSON structure for those objects as they appear in the server. Additionally, this tier contains the FileDAOs, which contain the functions that execute CRUD commands onto the server. The BasketsFileDAO works with the JSON data for Baskets, while the CupboardFileDAO works with the data for Needs.
-
-> _**[Sprint 4]** Provide a summary of this tier of your architecture. This
-> section will follow the same instructions that are given for the View
-> Tier above._
-
-> _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
-> static models (UML class diagrams) with some details such as associations (connections) between classes, and critical attributes and methods. (**Be sure** to revisit the Static **UML Review Sheet** to ensure your class diagrams are using correct format and syntax.)_
-> 
-![Replace with your Model Tier class diagram 1, etc.](model-placeholder.png)
 
 ## OO Design Principles
 
