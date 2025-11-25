@@ -39,10 +39,6 @@ The project is a website that users can go to and give donations to resolution e
 
 This section describes the features of the application.
 
-> _In this section you do not need to be exhaustive and list every
-> story.  Focus on top-level features from the Vision document and
-> maybe Epics and critical Stories._
-
 ### Definition of MVP
 
 The Minimum Viable Product provides different functionality for users depending on how they log-in through our authenticator. Helpers are able to see/search for ongoing famine efforts that need contributing to, as well as add and remove them from their shopping baskets. These baskets can then be checked-out once the helper is done modifying it. Admin users, who utilize the special "admin" login information, can add, remove, edit, and see ongoing famine effort listings, but do not have their own baskets and cannot they see the baskets of others.
@@ -212,16 +208,23 @@ The model tier contains the structure for the Baskets and Needs, which also prov
 4. Our API supports **Pure Fabrication**, where non-domain entities are created to maintain single responsibility and low-coupling in domain entities. In our API, our domain entities are Basket and Need, which have the responsibility of storing user-based and need-based information, respectively. These responsibilities do not, however, include updating and sending that data from the database. To maintain single responsibility in the Basket and Need classes, we created four other entities--BasketsFileDAO, BasketsController, CupboardFileDAO, and CupboardController--to handle the tasks. As a result, these classes were purely fabricated.
 
 ## Static Code Analysis/Future Design Improvements
-> _**[Sprint 4]** With the results from the Static Code Analysis exercise, 
-> **Identify 3-4** areas within your code that have been flagged by the Static Code 
-> Analysis Tool (SonarQube) and provide your analysis and recommendations.  
-> Include any relevant screenshot(s) with each area._
 
-> _**[Sprint 4]** Discuss **future** refactoring and other design improvements your team would explore if the team had additional time._
+![](DesignDocAssets/Sonar_ParseFloat.png)
+
+Though Number.parseFloat and parseFloat are functionally the same, the former is less ambiguous, and therefore better-defined semantically, than the latter. Additionally, using the modularization of Number.parseFloat would promote consistency if we were to also use other number-related methods, since they are all accessed from the Number scope. To fix this issue, it is recommended that we refactor the code to ensure that we call global functions through their modular alternatives. 
+
+![](DesignDocAssets/Sonar_NoAppCSS.png)
+
+The file being flagged, app.css, is an entirely blank file that serves no purpose to the project. This wastes storage, since even though the file's contents are emtpy, it still has metadata that is being stored. It is recommended that we go through the project and remove empty files so that our project may not be as large.
+
+![](DesignDocAssets/Sonar_Complexity.png)
+
+The issue being flagged in this picture is the function's high Cognitive Complexity, essentially meaning that the section of code could be difficult to comprehend. SonarQube determined this difficulty based on the nested conditions, as well as the long chain of else-if statements. Since, according to SonarQube, this code only needs minimal (1) changes to resolve the complexity, the best way to refactor the code would be to create a new function containing the else-if chain, which then gets called when the condition in line 204 is met. By doing this, we would decrease the complexity of the code to just under SonarQube's recommended threshold.
+
+Separate from the Static Code Analysis, one key area that the team would refactor if we had additional time would be the structure of the backend. There are inconsistencies in naming (like the mixing of the terms "Need" and "Cupboard"), incorrectly named classes (the Basket class contains information relevant to a User beyond the contents of their basket), and, overall, better ways to store the data that would make the API more manageable. As a result of these flaws, both the process of updating the backend in Sprint 3 so that it may accomodate our enhancements became and the writing of unit tests became overly difficult, as they required an understanding of the backend that was hard to achieve by reading it and our documentation.
 
 ## Testing
-> _This section will provide information about the testing performed
-> and the results of the testing._
+This section provides information about the testing performed and the results of said testing.
 
 ### Acceptance Testing
 
