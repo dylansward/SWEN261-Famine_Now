@@ -1,79 +1,27 @@
-# U-Fund: _Famine Now_
-# Modify this document to expand any and all sections that are applicable for a better understanding from your users/testers/collaborators (remove this comment and other instructions areas for your FINAL release)
+# Famine Now
 
-An online U-Fund system built in Java **24** and ___ _replace with other platform requirements_ ___
-  
-## Team
+A full-stack web-application simulating those used by not-for-profit organizations to collect goods and raise money for specific needs. It allows managers of the supposed "Famine Now" organization to list ongoing issues, which the public can then see and make contributions to in order to help resolve.
 
-- Anthony Salsbury
-- Dylan Sward
-- Vladislav Kudin
-- Giovanni Pirrih
+This project was originally developed by **Dylan Sward**, **Anthony Salsbury**, **Vladislav Kudin**, and **Giovanni Pirrih** across five sprints as defined by the Scrum framework. The current repository serves as a public archive of that project, and reflects it at its final[^exception] state by the end of the semester.
 
+## How to Use
 
-## Prerequisites
+### Prerequisites
 
-- Java **24** (Make sure to have correct JAVA_HOME setup in your environment)
-- Maven
--  _add any other tech stack requirements_
+This project was built using Java 24, Maven, and Angular, and requires them in order to run.
 
+### Run Instructions
 
-## How to run it
+1. From the project's root, change the directory to [`./ufund-api/`](./ufund-api/)
+2. Run the command `mvn exec:java`
+3. From the project's root, change the directory to [`./ufund-ui/ufund-angular/`](./ufund-ui/ufund-angular/)
+4. Run the command `ng serve` in a second terminal
+5. Open [`http://localhost:4200/`](http://localhost:4200/) in your browser
+6. To stop the project, close the browser and end both processes in the terminals
 
-1. Clone the repository and go to the root directory.
-2. Execute `mvn compile exec:java`
-3. Open in your browser `http://localhost:8080/`
-4.  _add any other steps required or examples of how to use/run_
+### Additional Notes
 
-## Known bugs and disclaimers
-(It may be the case that your implementation is not perfect.)
+- Depending on which type of user is signed-in, the web-application provides you with different functionality. The special username `admin` is reserved for managers of "Famine Now," while all others are used by standard users. If no existing account is associated with a username, it will be created automatically.
+    - The sign-in page has a field to enter a password. Regardless of what is entered, its value will be ignored. As such, it is fine to leave the field empty.
 
-Document any known bug or nuisance.
-If any shortcomings, make clear what these are and where they are located.
-
-As of 10/22/2025, if the admin removes something that was in the user's baskets, the user's basket will not reflect that change. If the admin changes something, it will reflect that there is a change, but it will react with an error.
-
-## How to test it
-
-The Maven build script provides hooks for run unit tests and generate code coverage
-reports in HTML.
-
-To run tests on all tiers together do this:
-
-1. Execute `mvn clean test jacoco:report`
-2. Open in your browser the file at `PROJECT_API_HOME/target/site/jacoco/index.html`
-
-To run tests on a single tier do this:
-
-1. Execute `mvn clean test-compile surefire:test@tier jacoco:report@tier` where `tier` is one of `controller`, `model`, `persistence`
-2. Open in your browser the file at `PROJECT_API_HOME/target/site/jacoco/{controller, model, persistence}/index.html`
-
-To run tests on all the tiers in isolation do this:
-
-1. Execute `mvn exec:exec@tests-and-coverage`
-2. To view the Controller tier tests open in your browser the file at `PROJECT_API_HOME/target/site/jacoco/model/index.html`
-3. To view the Model tier tests open in your browser the file at `PROJECT_API_HOME/target/site/jacoco/model/index.html`
-4. To view the Persistence tier tests open in your browser the file at `PROJECT_API_HOME/target/site/jacoco/model/index.html`
-
-*(Consider using `mvn clean verify` to attest you have reached the target threshold for coverage)
-  
-  
-## How to generate the Design documentation PDF
-
-1. Access the `PROJECT_DOCS_HOME/` directory
-2. Execute `mvn exec:exec@docs`
-3. The generated PDF will be in `PROJECT_DOCS_HOME/` directory
-
-
-## How to setup/run/test program 
-1. Tester, first obtain the Acceptance Test plan
-2. IP address of target machine running the app
-3. Execute ________
-4. ...
-5. ...
-
-## License
-
-MIT License
-
-See LICENSE for details.
+[^exception]: The original `README` was rarely edited during the course of the project, and did not properly describe the end-product or explain how to run it. This file was, and may continue to be, changed to resolve these issues. The rest of the repository remains unchanged, as its intention is to accurately capture the final product made during the class.
